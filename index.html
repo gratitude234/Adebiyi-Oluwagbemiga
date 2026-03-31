@@ -493,6 +493,12 @@ body {
 @media print {
   @page { size: 3.5in 5.8in; margin: 0.12in; }
 
+  * {
+    -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+
   body, .app-body { background: white !important; }
 
   .app-header,
@@ -509,6 +515,14 @@ body {
     border-radius: 10px !important;
     border: 1px solid var(--gold) !important;
   }
+
+  .c-header        { background: #0d4028 !important; }
+  .c-gold-stripe   { background: #c9a12a !important; }
+  .c-badge-dot     { background: #c9a12a !important; }
+  .c-dot           { background: #c9a12a !important; }
+  .c-rel           { background: #0d4028 !important; color: #c9a12a !important; }
+  .c-footer        { background: #0d4028 !important; }
+  .access-badge    { background: #c9a12a !important; }
 }
 </style>
 </head>
