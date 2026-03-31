@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guest Access Card Generator — Adebiyi 60th Birthday</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --green:       #0d4028;
+  --green-mid:   #1a5c3a;
+  --green-light: #e8f4ed;
+  --gold:        #c9a12a;
+  --gold-pale:   #f5eacc;
+  --white:       #ffffff;
+  --ink:         #1a1a1a;
+  --muted:       #666;
+  --border:      #d0dbd2;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: #e8ede9;
+  min-height: 100vh;
+  color: var(--ink);
+}
+
+/* ── APP HEADER ── */
+.app-header {
+  background: var(--green);
+  padding: 14px 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 4px solid var(--gold);
+}
+.header-left { display: flex; align-items: center; gap: 12px; }
+.header-seal {
+  width: 42px; height: 42px;
+  border-radius: 50%;
+  background: var(--gold);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px;
+  border: 2px solid rgba(255,255,255,0.3);
+  flex-shrink: 0;
+}
+.app-title {
+  color: var(--gold);
+  font-family: Georgia, serif;
+  font-size: 1rem;
+  font-weight: bold;
+  line-height: 1.3;
+}
+.app-subtitle {
+  color: rgba(255,255,255,0.65);
+  font-size: 0.72rem;
+  margin-top: 2px;
+  letter-spacing: 0.03em;
+}
+.counter-badge {
+  background: var(--gold);
+  color: var(--green);
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 5px 14px;
+  border-radius: 20px;
+  letter-spacing: 0.05em;
+}
+
+/* ── LAYOUT ── */
+.app-body {
+  display: flex;
+  gap: 2rem;
+  padding: 2rem;
+  max-width: 1050px;
+  margin: 0 auto;
+  align-items: flex-start;
+}
+
+/* ── FORM PANEL ── */
+.form-panel {
+  background: var(--white);
+  border-radius: 14px;
+  padding: 1.5rem;
+  width: 340px;
+  flex-shrink: 0;
+  border: 1px solid var(--border);
+}
+.panel-title {
+  font-family: Georgia, serif;
+  font-size: 1rem;
+  color: var(--green);
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid var(--gold);
+  margin-bottom: 1.25rem;
+}
+.form-group { margin-bottom: 1rem; }
+.form-group label {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 5px;
+}
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  font-size: 0.88rem;
+  color: var(--ink);
+  outline: none;
+  background: white;
+  transition: border-color 0.2s;
+}
+.form-group input:focus,
+.form-group select:focus { border-color: var(--green); }
+
+.err { font-size: 0.75rem; color: #c0392b; margin-top: 4px; display: none; }
+
+/* ── BUTTONS ── */
+.btn-generate {
+  width: 100%;
+  padding: 12px;
+  background: var(--green);
+  color: var(--gold);
+  border: none;
+  border-radius: 8px;
+  font-size: 0.92rem;
+  font-weight: 700;
+  cursor: pointer;
+  letter-spacing: 0.06em;
+  font-family: Georgia, serif;
+  transition: background 0.2s;
+  margin-top: 4px;
+}
+.btn-generate:hover { background: var(--green-mid); }
+
+.btn-print {
+  width: 100%;
+  padding: 11px;
+  background: var(--gold);
+  color: var(--green);
+  border: none;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 10px;
+  font-family: Georgia, serif;
+  transition: opacity 0.2s;
+}
+.btn-print:hover { opacity: 0.88; }
+
+.btn-new {
+  width: 100%;
+  padding: 10px;
+  background: transparent;
+  color: var(--green);
+  border: 1px solid var(--green);
+  border-radius: 8px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  margin-top: 8px;
+  transition: background 0.2s;
+}
+.btn-new:hover { background: var(--green-light); }
+
+/* ── PHOTO UPLOAD ── */
+.photo-section {
+  margin-top: 1.25rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid #eaefea;
+}
+.photo-section-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  display: block;
+  margin-bottom: 10px;
+}
+
+/* Upload zone — idle state */
+.upload-zone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: 100%;
+  padding: 18px 12px;
+  background: var(--green-light);
+  border: 1.5px dashed var(--green);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+  user-select: none;
+}
+.upload-zone:hover { background: #d5ecdc; border-color: var(--green-mid); }
+.upload-zone .uz-icon { font-size: 1.6rem; line-height: 1; }
+.upload-zone .uz-title {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--green);
+  margin: 0;
+}
+.upload-zone .uz-sub {
+  font-size: 0.7rem;
+  color: var(--muted);
+  margin: 0;
+}
+
+/* Upload zone — loaded state */
+.photo-loaded {
+  display: none;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 10px 12px;
+  background: var(--green-light);
+  border: 1.5px solid var(--green);
+  border-radius: 10px;
+}
+.photo-loaded .pl-thumb {
+  width: 56px;
+  height: 56px;
+  border-radius: 8px;
+  object-fit: cover;
+  border: 2px solid var(--green);
+  flex-shrink: 0;
+  display: block;
+}
+.photo-loaded .pl-text { flex: 1; min-width: 0; }
+.photo-loaded .pl-ok {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--green);
+  margin-bottom: 3px;
+}
+.photo-loaded .pl-ok::before { content: '✔  '; }
+.photo-loaded .pl-change {
+  font-size: 0.72rem;
+  color: var(--muted);
+  cursor: pointer;
+  text-decoration: underline;
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: inherit;
+}
+.photo-loaded .pl-change:hover { color: var(--green); }
+
+/* ── CARD PANEL ── */
+.card-panel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  min-width: 0;
+}
+.panel-hint {
+  font-size: 0.72rem;
+  color: #999;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* ── EMPTY STATE ── */
+.empty-state {
+  text-align: center;
+  padding: 4rem 2rem;
+  color: #aaa;
+}
+.empty-icon { font-size: 3.5rem; margin-bottom: 1rem; }
+.empty-text { font-size: 0.88rem; line-height: 1.7; }
+
+/* ══════════════════════════════
+   THE ACCESS CARD
+══════════════════════════════ */
+#access-card {
+  width: 350px;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1.5px solid var(--gold);
+  background: var(--white);
+  font-family: Georgia, serif;
+  display: none;
+}
+
+/* Card Top Header */
+.c-header {
+  background: var(--green);
+  padding: 16px 18px 18px;
+  position: relative;
+  overflow: hidden;
+}
+.c-watermark {
+  position: absolute;
+  right: -8px; top: 50%;
+  transform: translateY(-50%);
+  font-size: 90px;
+  font-weight: bold;
+  color: rgba(201,161,42,0.15);
+  font-family: Georgia, serif;
+  line-height: 1;
+  user-select: none;
+  pointer-events: none;
+}
+.c-hotel-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 11px;
+}
+.c-seal {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: var(--gold);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 19px;
+  border: 2px solid rgba(255,255,255,0.35);
+  flex-shrink: 0;
+}
+.c-hotel-name {
+  font-size: 8px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-family: -apple-system, sans-serif;
+  margin-bottom: 2px;
+}
+.c-hotel-full {
+  font-size: 11px;
+  color: white;
+  font-family: -apple-system, sans-serif;
+  font-weight: 700;
+}
+.c-honour {
+  color: rgba(255,255,255,0.75);
+  font-size: 10.5px;
+  font-style: italic;
+  font-family: Georgia, serif;
+}
+.c-celeb-name {
+  color: var(--gold);
+  font-size: 9.5px;
+  font-family: -apple-system, sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+
+/* Gold stripe */
+.c-gold-stripe { height: 5px; background: var(--gold); }
+
+/* Access badge */
+.c-badge {
+  padding: 5px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-bottom: 1px solid #e4ede6;
+  background: white;
+}
+.c-badge-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--gold); }
+.c-badge-text {
+  font-size: 8px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--green);
+  font-family: -apple-system, sans-serif;
+  font-weight: 700;
+}
+
+/* Card body */
+.c-body {
+  padding: 16px 18px;
+  display: flex;
+  gap: 14px;
+}
+
+.c-photo-wrap { flex-shrink: 0; }
+.c-photo-box {
+  width: 78px; height: 95px;
+  border-radius: 9px;
+  border: 2.5px solid var(--green);
+  overflow: hidden;
+  background: var(--green-light);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.c-photo-box img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.c-photo-placeholder { text-align: center; padding: 6px; }
+.c-photo-placeholder .ico { font-size: 28px; display: block; }
+.c-photo-placeholder p {
+  font-size: 7px;
+  color: var(--green);
+  font-family: -apple-system, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-top: 4px;
+  line-height: 1.4;
+}
+.c-photo-caption {
+  font-size: 7.5px;
+  color: var(--green);
+  font-family: -apple-system, sans-serif;
+  font-weight: 700;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  margin-top: 5px;
+}
+
+.c-info { flex: 1; min-width: 0; }
+.c-guest-label {
+  font-size: 7.5px;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: #aaa;
+  font-family: -apple-system, sans-serif;
+  margin-bottom: 2px;
+}
+.c-guest-name {
+  font-size: 17px;
+  font-weight: bold;
+  color: var(--green);
+  line-height: 1.2;
+  margin-bottom: 8px;
+  font-family: Georgia, serif;
+  word-break: break-word;
+}
+.c-rel {
+  display: inline-block;
+  background: var(--green);
+  color: var(--gold);
+  font-size: 7.5px;
+  font-family: -apple-system, sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 20px;
+  margin-bottom: 10px;
+}
+.c-detail {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  margin-bottom: 4px;
+}
+.c-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--gold); flex-shrink: 0; margin-top: 4px; }
+.c-detail-text { font-size: 10px; color: #333; font-family: -apple-system, sans-serif; }
+
+/* Divider */
+.c-divider { height: 1px; background: #e3ece5; margin: 0; }
+
+/* Footer */
+.c-footer {
+  background: var(--green);
+  padding: 11px 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.c-venue {
+  font-size: 8px;
+  color: var(--gold);
+  font-family: -apple-system, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  line-height: 1.6;
+}
+.c-card-num {
+  font-family: 'Courier New', monospace;
+  font-size: 11px;
+  color: rgba(255,255,255,0.6);
+  letter-spacing: 0.15em;
+}
+
+/* ── PRINT ── */
+@media print {
+  @page { size: 3.5in 5.8in; margin: 0.12in; }
+
+  body, .app-body { background: white !important; }
+
+  .app-header,
+  .form-panel,
+  .panel-hint,
+  .empty-state { display: none !important; }
+
+  .app-body { padding: 0 !important; gap: 0 !important; }
+  .card-panel { align-items: flex-start !important; }
+
+  #access-card {
+    display: block !important;
+    width: 100% !important;
+    border-radius: 10px !important;
+    border: 1px solid var(--gold) !important;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- APP HEADER -->
+<div class="app-header">
+  <div class="header-left">
+    <div class="header-seal">🦅</div>
+    <div>
+      <div class="app-title">Guest Access Card Generator</div>
+      <div class="app-subtitle">SURV. (TPL.) Adebiyi Oluwagbemiga Olanibi — 60th Birthday &nbsp;·&nbsp; 17 April 2026</div>
+    </div>
+  </div>
+  <div class="counter-badge" id="counter-badge">Cards Printed: 0</div>
+</div>
+
+<!-- APP BODY -->
+<div class="app-body">
+
+  <!-- FORM PANEL -->
+  <div class="form-panel">
+    <div class="panel-title">Enter Guest Details</div>
+
+    <div class="form-group">
+      <label>Full Name *</label>
+      <input type="text" id="f-name" placeholder="As submitted on the form" />
+      <div class="err" id="err-name">Please enter the guest's full name.</div>
+    </div>
+
+    <div class="form-group">
+      <label>Relationship to Celebrant *</label>
+      <select id="f-rel">
+        <option value="">— Select —</option>
+        <option value="Family">Family</option>
+        <option value="Friend">Friend</option>
+        <option value="Colleague">Colleague</option>
+        <option value="Others">Others</option>
+      </select>
+      <div class="err" id="err-rel">Please select a relationship.</div>
+    </div>
+
+    <div class="form-group">
+      <label>Phone Number (WhatsApp) *</label>
+      <input type="text" id="f-phone" placeholder="e.g. +234 803 000 0000" />
+      <div class="err" id="err-phone">Please enter the phone number.</div>
+    </div>
+
+    <button class="btn-generate" onclick="generateCard()">✦ &nbsp;Generate Access Card</button>
+
+    <div id="card-actions" style="display:none;">
+      <button class="btn-print" onclick="printCard()">🖨️ &nbsp;Print This Card</button>
+      <button class="btn-new" onclick="newCard()">＋ &nbsp;New Card (Next Guest)</button>
+    </div>
+
+    <!-- CELEBRANT PHOTO UPLOAD -->
+    <div class="photo-section">
+      <span class="photo-section-label">Celebrant Photo (Dad's Picture)</span>
+
+      <div class="upload-zone" id="upload-zone" onclick="document.getElementById('photo-input').click()">
+        <span class="uz-icon">📷</span>
+        <p class="uz-title">Upload Dad's Photo</p>
+        <p class="uz-sub">Click to browse · JPG, PNG supported</p>
+      </div>
+
+      <div class="photo-loaded" id="photo-loaded">
+        <img class="pl-thumb" id="photo-thumb" src="" alt="Celebrant" />
+        <div class="pl-text">
+          <div class="pl-ok">Photo loaded</div>
+          <button class="pl-change" onclick="document.getElementById('photo-input').click()">Change photo</button>
+        </div>
+      </div>
+
+      <input type="file" id="photo-input" accept="image/*" style="display:none;" onchange="loadPhoto(event)" />
+    </div>
+  </div>
+
+  <!-- CARD PREVIEW PANEL -->
+  <div class="card-panel">
+    <div class="panel-hint">— Card Preview —</div>
+
+    <!-- EMPTY STATE -->
+    <div class="empty-state" id="empty-state">
+      <div class="empty-icon">🎂</div>
+      <div class="empty-text">
+        Enter guest details from the Google Form<br>
+        and click <strong>Generate</strong> to create their access card.<br><br>
+        <span style="font-size:0.8rem;color:#bbb;">Each card gets a unique guest number.</span>
+      </div>
+    </div>
+
+    <!-- ══ THE ACCESS CARD ══ -->
+    <div id="access-card">
+
+      <div class="c-header">
+        <div class="c-watermark">60</div>
+        <div class="c-hotel-row">
+          <div class="c-seal">🦅</div>
+          <div>
+            <div class="c-hotel-name">Royal Birds Hotel &amp; Towers · Akure</div>
+            <div class="c-hotel-full">60th Birthday Celebration</div>
+          </div>
+        </div>
+        <div class="c-honour">In honour of</div>
+        <div class="c-celeb-name">SURV. (TPL.) Adebiyi Oluwagbemiga Olanibi, MNIS</div>
+      </div>
+
+      <div class="c-gold-stripe"></div>
+
+      <div class="c-badge">
+        <div class="c-badge-dot"></div>
+        <div class="c-badge-text">Official Guest Access Card</div>
+        <div class="c-badge-dot"></div>
+      </div>
+
+      <div class="c-body">
+        <!-- CELEBRANT PHOTO -->
+        <div class="c-photo-wrap">
+          <div class="c-photo-box" id="c-photo-box">
+            <div class="c-photo-placeholder">
+              <span class="ico">👤</span>
+              <p>Celebrant<br>Photo</p>
+            </div>
+          </div>
+          <div class="c-photo-caption">Celebrant</div>
+        </div>
+
+        <!-- GUEST INFO -->
+        <div class="c-info">
+          <div class="c-guest-label">Guest Name</div>
+          <div class="c-guest-name" id="c-name">—</div>
+          <div class="c-rel" id="c-rel">—</div>
+          <div class="c-detail">
+            <div class="c-dot"></div>
+            <div class="c-detail-text" id="c-phone">—</div>
+          </div>
+          <div class="c-detail">
+            <div class="c-dot"></div>
+            <div class="c-detail-text">Friday, 17 April 2026</div>
+          </div>
+          <div class="c-detail">
+            <div class="c-dot"></div>
+            <div class="c-detail-text">12:00 PM Prompt</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="c-divider"></div>
+
+      <div class="c-footer">
+        <div class="c-venue">
+          Royal Birds Hotel &amp; Towers<br>
+          Alagbaka Estate, Akure, Ondo State
+        </div>
+        <div class="c-card-num" id="c-num">GBD-001</div>
+      </div>
+
+    </div>
+    <!-- end #access-card -->
+
+  </div>
+</div>
+
+<script>
+  let cardCount = 0;
+  let celebrantPhoto = null;
+
+  function generateCard() {
+    const name  = document.getElementById('f-name').value.trim();
+    const rel   = document.getElementById('f-rel').value;
+    const phone = document.getElementById('f-phone').value.trim();
+
+    let valid = true;
+    const show = (id, show) => {
+      document.getElementById(id).style.display = show ? 'block' : 'none';
+    };
+
+    if (!name)  { show('err-name',  true); valid = false; } else show('err-name',  false);
+    if (!rel)   { show('err-rel',   true); valid = false; } else show('err-rel',   false);
+    if (!phone) { show('err-phone', true); valid = false; } else show('err-phone', false);
+
+    if (!valid) return;
+
+    cardCount++;
+    document.getElementById('counter-badge').textContent = 'Cards Printed: ' + cardCount;
+
+    document.getElementById('c-name').textContent  = name;
+    document.getElementById('c-rel').textContent   = rel;
+    document.getElementById('c-phone').textContent = phone;
+    document.getElementById('c-num').textContent   = 'GBD-' + String(cardCount).padStart(3, '0');
+
+    const photoBox = document.getElementById('c-photo-box');
+    if (celebrantPhoto) {
+      photoBox.innerHTML = '<img src="' + celebrantPhoto + '" alt="Celebrant" />';
+    }
+
+    document.getElementById('empty-state').style.display  = 'none';
+    document.getElementById('access-card').style.display  = 'block';
+    document.getElementById('card-actions').style.display = 'block';
+  }
+
+  function loadPhoto(e) {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = function(ev) {
+      celebrantPhoto = ev.target.result;
+
+      // Update thumb and swap upload zone → loaded state
+      document.getElementById('photo-thumb').src = celebrantPhoto;
+      document.getElementById('upload-zone').style.display  = 'none';
+      document.getElementById('photo-loaded').style.display = 'flex';
+
+      // Update card photo box if card is visible
+      const photoBox = document.getElementById('c-photo-box');
+      if (document.getElementById('access-card').style.display === 'block') {
+        photoBox.innerHTML = '<img src="' + celebrantPhoto + '" alt="Celebrant" />';
+      }
+    };
+    reader.readAsDataURL(file);
+  }
+
+  function printCard() {
+    window.print();
+  }
+
+  function newCard() {
+    document.getElementById('f-name').value  = '';
+    document.getElementById('f-rel').value   = '';
+    document.getElementById('f-phone').value = '';
+    ['err-name','err-rel','err-phone'].forEach(id => {
+      document.getElementById(id).style.display = 'none';
+    });
+    document.getElementById('empty-state').style.display  = 'block';
+    document.getElementById('access-card').style.display  = 'none';
+    document.getElementById('card-actions').style.display = 'none';
+    document.getElementById('f-name').focus();
+  }
+</script>
+
+</body>
+</html>
