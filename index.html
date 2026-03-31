@@ -12,7 +12,6 @@
   --green-mid:   #1a5c3a;
   --green-light: #e8f4ed;
   --gold:        #c9a12a;
-  --gold-pale:   #f5eacc;
   --white:       #ffffff;
   --ink:         #1a1a1a;
   --muted:       #666;
@@ -26,53 +25,66 @@ body {
   color: var(--ink);
 }
 
-/* ── APP HEADER ── */
+/* ── HEADER ── */
 .app-header {
   background: var(--green);
-  padding: 14px 2rem;
+  padding: 12px 1rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 10px;
   border-bottom: 4px solid var(--gold);
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
-.header-left { display: flex; align-items: center; gap: 12px; }
+.header-left { display: flex; align-items: center; gap: 10px; min-width: 0; flex: 1; }
 .header-seal {
-  width: 42px; height: 42px;
+  width: 38px; height: 38px;
   border-radius: 50%;
   background: var(--gold);
   display: flex; align-items: center; justify-content: center;
-  font-size: 20px;
+  font-size: 18px;
   border: 2px solid rgba(255,255,255,0.3);
   flex-shrink: 0;
 }
+.header-text { min-width: 0; flex: 1; }
 .app-title {
   color: var(--gold);
   font-family: Georgia, serif;
-  font-size: 1rem;
+  font-size: 0.92rem;
   font-weight: bold;
   line-height: 1.3;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .app-subtitle {
-  color: rgba(255,255,255,0.65);
-  font-size: 0.72rem;
-  margin-top: 2px;
-  letter-spacing: 0.03em;
+  color: rgba(255,255,255,0.6);
+  font-size: 0.65rem;
+  margin-top: 1px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .counter-badge {
   background: var(--gold);
   color: var(--green);
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   font-weight: 700;
-  padding: 5px 14px;
+  padding: 6px 11px;
   border-radius: 20px;
-  letter-spacing: 0.05em;
+  white-space: nowrap;
+  flex-shrink: 0;
+  text-align: center;
+  line-height: 1.35;
 }
 
 /* ── LAYOUT ── */
 .app-body {
   display: flex;
-  gap: 2rem;
-  padding: 2rem;
+  gap: 1.5rem;
+  padding: 1.5rem;
   max-width: 1050px;
   margin: 0 auto;
   align-items: flex-start;
@@ -82,7 +94,7 @@ body {
 .form-panel {
   background: var(--white);
   border-radius: 14px;
-  padding: 1.5rem;
+  padding: 1.25rem;
   width: 340px;
   flex-shrink: 0;
   border: 1px solid var(--border);
@@ -98,7 +110,7 @@ body {
 .form-group { margin-bottom: 1rem; }
 .form-group label {
   display: block;
-  font-size: 0.72rem;
+  font-size: 0.7rem;
   font-weight: 700;
   color: var(--muted);
   text-transform: uppercase;
@@ -108,64 +120,77 @@ body {
 .form-group input,
 .form-group select {
   width: 100%;
-  padding: 10px 12px;
+  padding: 11px 12px;
   border: 1px solid var(--border);
-  border-radius: 7px;
-  font-size: 0.88rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
   color: var(--ink);
   outline: none;
   background: white;
+  -webkit-appearance: none;
+  appearance: none;
   transition: border-color 0.2s;
 }
+.form-group select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23666' d='M6 8L0 0h12z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 32px;
+}
 .form-group input:focus,
-.form-group select:focus { border-color: var(--green); }
-
-.err { font-size: 0.75rem; color: #c0392b; margin-top: 4px; display: none; }
+.form-group select:focus {
+  border-color: var(--green);
+  box-shadow: 0 0 0 3px rgba(13,64,40,0.08);
+}
+.err { font-size: 0.72rem; color: #c0392b; margin-top: 4px; display: none; }
 
 /* ── BUTTONS ── */
 .btn-generate {
   width: 100%;
-  padding: 12px;
+  padding: 13px;
   background: var(--green);
   color: var(--gold);
   border: none;
-  border-radius: 8px;
+  border-radius: 9px;
   font-size: 0.92rem;
   font-weight: 700;
   cursor: pointer;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.05em;
   font-family: Georgia, serif;
   transition: background 0.2s;
   margin-top: 4px;
+  -webkit-tap-highlight-color: transparent;
 }
 .btn-generate:hover { background: var(--green-mid); }
 
 .btn-print {
   width: 100%;
-  padding: 11px;
+  padding: 13px;
   background: var(--gold);
   color: var(--green);
   border: none;
-  border-radius: 8px;
+  border-radius: 9px;
   font-size: 0.9rem;
   font-weight: 700;
   cursor: pointer;
   margin-top: 10px;
   font-family: Georgia, serif;
+  -webkit-tap-highlight-color: transparent;
   transition: opacity 0.2s;
 }
 .btn-print:hover { opacity: 0.88; }
 
 .btn-new {
   width: 100%;
-  padding: 10px;
+  padding: 12px;
   background: transparent;
   color: var(--green);
-  border: 1px solid var(--green);
-  border-radius: 8px;
+  border: 1.5px solid var(--green);
+  border-radius: 9px;
   font-size: 0.85rem;
   cursor: pointer;
   margin-top: 8px;
+  -webkit-tap-highlight-color: transparent;
   transition: background 0.2s;
 }
 .btn-new:hover { background: var(--green-light); }
@@ -177,7 +202,7 @@ body {
   border-top: 1px solid #eaefea;
 }
 .photo-section-label {
-  font-size: 0.72rem;
+  font-size: 0.7rem;
   font-weight: 700;
   color: var(--muted);
   text-transform: uppercase;
@@ -185,8 +210,6 @@ body {
   display: block;
   margin-bottom: 10px;
 }
-
-/* Upload zone — idle state */
 .upload-zone {
   display: flex;
   flex-direction: column;
@@ -194,29 +217,19 @@ body {
   justify-content: center;
   gap: 6px;
   width: 100%;
-  padding: 18px 12px;
+  padding: 20px 12px;
   background: var(--green-light);
   border: 1.5px dashed var(--green);
   border-radius: 10px;
   cursor: pointer;
-  transition: background 0.2s, border-color 0.2s;
-  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: background 0.2s;
 }
-.upload-zone:hover { background: #d5ecdc; border-color: var(--green-mid); }
-.upload-zone .uz-icon { font-size: 1.6rem; line-height: 1; }
-.upload-zone .uz-title {
-  font-size: 0.82rem;
-  font-weight: 700;
-  color: var(--green);
-  margin: 0;
-}
-.upload-zone .uz-sub {
-  font-size: 0.7rem;
-  color: var(--muted);
-  margin: 0;
-}
+.upload-zone:hover  { background: #d5ecdc; }
+.upload-zone .uz-icon  { font-size: 1.8rem; line-height: 1; }
+.upload-zone .uz-title { font-size: 0.85rem; font-weight: 700; color: var(--green); margin: 0; }
+.upload-zone .uz-sub   { font-size: 0.7rem; color: var(--muted); margin: 0; }
 
-/* Upload zone — loaded state */
 .photo-loaded {
   display: none;
   align-items: center;
@@ -228,8 +241,7 @@ body {
   border-radius: 10px;
 }
 .photo-loaded .pl-thumb {
-  width: 56px;
-  height: 56px;
+  width: 56px; height: 56px;
   border-radius: 8px;
   object-fit: cover;
   border: 2px solid var(--green);
@@ -237,22 +249,12 @@ body {
   display: block;
 }
 .photo-loaded .pl-text { flex: 1; min-width: 0; }
-.photo-loaded .pl-ok {
-  font-size: 0.8rem;
-  font-weight: 700;
-  color: var(--green);
-  margin-bottom: 3px;
-}
+.photo-loaded .pl-ok { font-size: 0.8rem; font-weight: 700; color: var(--green); margin-bottom: 3px; }
 .photo-loaded .pl-ok::before { content: '✔  '; }
 .photo-loaded .pl-change {
-  font-size: 0.72rem;
-  color: var(--muted);
-  cursor: pointer;
-  text-decoration: underline;
-  background: none;
-  border: none;
-  padding: 0;
-  font-family: inherit;
+  font-size: 0.72rem; color: var(--muted); cursor: pointer;
+  text-decoration: underline; background: none; border: none;
+  padding: 0; font-family: inherit;
 }
 .photo-loaded .pl-change:hover { color: var(--green); }
 
@@ -262,30 +264,22 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1rem;
+  gap: 0.75rem;
   min-width: 0;
 }
-.panel-hint {
-  font-size: 0.72rem;
-  color: #999;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
+.panel-hint { font-size: 0.7rem; color: #999; letter-spacing: 0.1em; text-transform: uppercase; }
 
 /* ── EMPTY STATE ── */
-.empty-state {
-  text-align: center;
-  padding: 4rem 2rem;
-  color: #aaa;
-}
-.empty-icon { font-size: 3.5rem; margin-bottom: 1rem; }
-.empty-text { font-size: 0.88rem; line-height: 1.7; }
+.empty-state { text-align: center; padding: 3.5rem 2rem; color: #aaa; }
+.empty-icon  { font-size: 3rem; margin-bottom: 0.75rem; }
+.empty-text  { font-size: 0.85rem; line-height: 1.7; }
 
 /* ══════════════════════════════
    THE ACCESS CARD
 ══════════════════════════════ */
 #access-card {
-  width: 350px;
+  width: 100%;
+  max-width: 350px;
   border-radius: 16px;
   overflow: hidden;
   border: 1.5px solid var(--gold);
@@ -294,7 +288,6 @@ body {
   display: none;
 }
 
-/* Card Top Header */
 .c-header {
   background: var(--green);
   padding: 16px 18px 18px;
@@ -302,191 +295,106 @@ body {
   overflow: hidden;
 }
 .c-watermark {
-  position: absolute;
-  right: -8px; top: 50%;
+  position: absolute; right: -8px; top: 50%;
   transform: translateY(-50%);
-  font-size: 90px;
-  font-weight: bold;
+  font-size: 88px; font-weight: bold;
   color: rgba(201,161,42,0.15);
-  font-family: Georgia, serif;
-  line-height: 1;
-  user-select: none;
-  pointer-events: none;
+  font-family: Georgia, serif; line-height: 1;
+  user-select: none; pointer-events: none;
 }
-.c-hotel-row {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 11px;
-}
+.c-hotel-row { display: flex; align-items: center; gap: 10px; margin-bottom: 11px; }
 .c-seal {
-  width: 40px; height: 40px;
-  border-radius: 50%;
+  width: 40px; height: 40px; border-radius: 50%;
   background: var(--gold);
   display: flex; align-items: center; justify-content: center;
-  font-size: 19px;
-  border: 2px solid rgba(255,255,255,0.35);
-  flex-shrink: 0;
+  font-size: 19px; border: 2px solid rgba(255,255,255,0.35); flex-shrink: 0;
 }
-.c-hotel-name {
-  font-size: 8px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--gold);
-  font-family: -apple-system, sans-serif;
-  margin-bottom: 2px;
-}
-.c-hotel-full {
-  font-size: 11px;
-  color: white;
-  font-family: -apple-system, sans-serif;
-  font-weight: 700;
-}
-.c-honour {
-  color: rgba(255,255,255,0.75);
-  font-size: 10.5px;
-  font-style: italic;
-  font-family: Georgia, serif;
-}
-.c-celeb-name {
-  color: var(--gold);
-  font-size: 9.5px;
-  font-family: -apple-system, sans-serif;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  margin-top: 2px;
-}
+.c-hotel-name { font-size: 8px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); font-family: -apple-system, sans-serif; margin-bottom: 2px; }
+.c-hotel-full { font-size: 11px; color: white; font-family: -apple-system, sans-serif; font-weight: 700; }
+.c-honour     { color: rgba(255,255,255,0.75); font-size: 10.5px; font-style: italic; font-family: Georgia, serif; }
+.c-celeb-name { color: var(--gold); font-size: 9.5px; font-family: -apple-system, sans-serif; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; margin-top: 2px; }
 
-/* Gold stripe */
 .c-gold-stripe { height: 5px; background: var(--gold); }
 
-/* Access badge */
 .c-badge {
   padding: 5px 18px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  border-bottom: 1px solid #e4ede6;
-  background: white;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  border-bottom: 1px solid #e4ede6; background: white;
 }
-.c-badge-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--gold); }
-.c-badge-text {
-  font-size: 8px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--green);
-  font-family: -apple-system, sans-serif;
-  font-weight: 700;
-}
+.c-badge-dot  { width: 4px; height: 4px; border-radius: 50%; background: var(--gold); }
+.c-badge-text { font-size: 8px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--green); font-family: -apple-system, sans-serif; font-weight: 700; }
 
-/* Card body */
-.c-body {
-  padding: 16px 18px;
-  display: flex;
-  gap: 14px;
-}
-
+.c-body { padding: 16px 18px; display: flex; gap: 14px; }
 .c-photo-wrap { flex-shrink: 0; }
 .c-photo-box {
-  width: 78px; height: 95px;
-  border-radius: 9px;
-  border: 2.5px solid var(--green);
-  overflow: hidden;
+  width: 78px; height: 95px; border-radius: 9px;
+  border: 2.5px solid var(--green); overflow: hidden;
   background: var(--green-light);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
 }
 .c-photo-box img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .c-photo-placeholder { text-align: center; padding: 6px; }
 .c-photo-placeholder .ico { font-size: 28px; display: block; }
-.c-photo-placeholder p {
-  font-size: 7px;
-  color: var(--green);
-  font-family: -apple-system, sans-serif;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  margin-top: 4px;
-  line-height: 1.4;
-}
-.c-photo-caption {
-  font-size: 7.5px;
-  color: var(--green);
-  font-family: -apple-system, sans-serif;
-  font-weight: 700;
-  text-align: center;
-  text-transform: uppercase;
-  letter-spacing: 0.07em;
-  margin-top: 5px;
-}
+.c-photo-placeholder p { font-size: 7px; color: var(--green); font-family: -apple-system, sans-serif; text-transform: uppercase; letter-spacing: 0.06em; margin-top: 4px; line-height: 1.4; }
+.c-photo-caption { font-size: 7.5px; color: var(--green); font-family: -apple-system, sans-serif; font-weight: 700; text-align: center; text-transform: uppercase; letter-spacing: 0.07em; margin-top: 5px; }
 
 .c-info { flex: 1; min-width: 0; }
-.c-guest-label {
-  font-size: 7.5px;
-  letter-spacing: 0.13em;
-  text-transform: uppercase;
-  color: #aaa;
-  font-family: -apple-system, sans-serif;
-  margin-bottom: 2px;
-}
-.c-guest-name {
-  font-size: 17px;
-  font-weight: bold;
-  color: var(--green);
-  line-height: 1.2;
-  margin-bottom: 8px;
-  font-family: Georgia, serif;
-  word-break: break-word;
-}
-.c-rel {
-  display: inline-block;
-  background: var(--green);
-  color: var(--gold);
-  font-size: 7.5px;
-  font-family: -apple-system, sans-serif;
-  font-weight: 700;
-  letter-spacing: 0.13em;
-  text-transform: uppercase;
-  padding: 3px 10px;
-  border-radius: 20px;
-  margin-bottom: 10px;
-}
-.c-detail {
-  display: flex;
-  align-items: flex-start;
-  gap: 6px;
-  margin-bottom: 4px;
-}
+.c-guest-label { font-size: 7.5px; letter-spacing: 0.13em; text-transform: uppercase; color: #aaa; font-family: -apple-system, sans-serif; margin-bottom: 2px; }
+.c-guest-name { font-size: 17px; font-weight: bold; color: var(--green); line-height: 1.2; margin-bottom: 8px; font-family: Georgia, serif; word-break: break-word; }
+.c-rel { display: inline-block; background: var(--green); color: var(--gold); font-size: 7.5px; font-family: -apple-system, sans-serif; font-weight: 700; letter-spacing: 0.13em; text-transform: uppercase; padding: 3px 10px; border-radius: 20px; margin-bottom: 10px; }
+.c-detail { display: flex; align-items: flex-start; gap: 6px; margin-bottom: 4px; }
 .c-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--gold); flex-shrink: 0; margin-top: 4px; }
 .c-detail-text { font-size: 10px; color: #333; font-family: -apple-system, sans-serif; }
 
-/* Divider */
-.c-divider { height: 1px; background: #e3ece5; margin: 0; }
+.c-divider { height: 1px; background: #e3ece5; }
 
-/* Footer */
 .c-footer {
   background: var(--green);
   padding: 11px 18px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  display: flex; justify-content: space-between; align-items: center;
 }
-.c-venue {
-  font-size: 8px;
-  color: var(--gold);
-  font-family: -apple-system, sans-serif;
-  text-transform: uppercase;
-  letter-spacing: 0.07em;
-  line-height: 1.6;
-}
-.c-card-num {
-  font-family: 'Courier New', monospace;
-  font-size: 11px;
-  color: rgba(255,255,255,0.6);
-  letter-spacing: 0.15em;
+.c-venue { font-size: 8px; color: var(--gold); font-family: -apple-system, sans-serif; text-transform: uppercase; letter-spacing: 0.07em; line-height: 1.6; }
+.c-card-num { font-family: 'Courier New', monospace; font-size: 11px; color: rgba(255,255,255,0.6); letter-spacing: 0.15em; }
+
+/* ══════════════════════════════
+   MOBILE RESPONSIVE ≤ 680px
+══════════════════════════════ */
+@media (max-width: 680px) {
+
+  .app-header   { padding: 10px 14px; }
+  .app-subtitle { display: none; }
+  .app-title    { font-size: 0.82rem; }
+  .counter-badge { font-size: 0.65rem; padding: 5px 9px; }
+
+  .app-body {
+    flex-direction: column;
+    padding: 0.85rem;
+    gap: 0.85rem;
+  }
+
+  .form-panel {
+    width: 100%;
+    border-radius: 12px;
+    padding: 1rem;
+  }
+
+  .card-panel {
+    width: 100%;
+    align-items: stretch;
+  }
+
+  #access-card {
+    max-width: 100%;
+    border-radius: 12px;
+  }
+
+  /* Bigger touch targets */
+  .form-group input,
+  .form-group select { padding: 13px 12px; font-size: 1rem; }
+  .btn-generate, .btn-print { padding: 15px; font-size: 1rem; }
+  .btn-new { padding: 13px; font-size: 0.9rem; }
+
+  .empty-state { padding: 2rem 1rem; }
 }
 
 /* ── PRINT ── */
@@ -500,56 +408,49 @@ body {
   }
 
   body, .app-body { background: white !important; }
-
-  .app-header,
-  .form-panel,
-  .panel-hint,
-  .empty-state { display: none !important; }
-
-  .app-body { padding: 0 !important; gap: 0 !important; }
+  .app-header, .form-panel, .panel-hint, .empty-state { display: none !important; }
+  .app-body   { padding: 0 !important; gap: 0 !important; }
   .card-panel { align-items: flex-start !important; }
 
   #access-card {
     display: block !important;
     width: 100% !important;
+    max-width: 100% !important;
     border-radius: 10px !important;
-    border: 1px solid var(--gold) !important;
+    border: 1px solid #c9a12a !important;
   }
 
-  .c-header        { background: #0d4028 !important; }
-  .c-gold-stripe   { background: #c9a12a !important; }
-  .c-badge-dot     { background: #c9a12a !important; }
-  .c-dot           { background: #c9a12a !important; }
-  .c-rel           { background: #0d4028 !important; color: #c9a12a !important; }
-  .c-footer        { background: #0d4028 !important; }
-  .access-badge    { background: #c9a12a !important; }
+  .c-header      { background: #0d4028 !important; }
+  .c-gold-stripe { background: #c9a12a !important; }
+  .c-badge-dot   { background: #c9a12a !important; }
+  .c-dot         { background: #c9a12a !important; }
+  .c-rel         { background: #0d4028 !important; color: #c9a12a !important; }
+  .c-footer      { background: #0d4028 !important; }
+  .c-seal        { background: #c9a12a !important; }
 }
 </style>
 </head>
 <body>
 
-<!-- APP HEADER -->
 <div class="app-header">
   <div class="header-left">
     <div class="header-seal">🦅</div>
-    <div>
+    <div class="header-text">
       <div class="app-title">Guest Access Card Generator</div>
-      <div class="app-subtitle">SURV. (TPL.) Adebiyi Oluwagbemiga Olanibi — 60th Birthday &nbsp;·&nbsp; 17 April 2026</div>
+      <div class="app-subtitle">SURV. (TPL.) Adebiyi Oluwagbemiga Olanibi — 60th Birthday · 17 April 2026</div>
     </div>
   </div>
-  <div class="counter-badge" id="counter-badge">Cards Printed: 0</div>
+  <div class="counter-badge" id="counter-badge">Cards<br>Printed: 0</div>
 </div>
 
-<!-- APP BODY -->
 <div class="app-body">
 
-  <!-- FORM PANEL -->
   <div class="form-panel">
     <div class="panel-title">Enter Guest Details</div>
 
     <div class="form-group">
       <label>Full Name *</label>
-      <input type="text" id="f-name" placeholder="As submitted on the form" />
+      <input type="text" id="f-name" placeholder="As submitted on the form" autocomplete="off" />
       <div class="err" id="err-name">Please enter the guest's full name.</div>
     </div>
 
@@ -567,27 +468,24 @@ body {
 
     <div class="form-group">
       <label>Phone Number (WhatsApp) *</label>
-      <input type="text" id="f-phone" placeholder="e.g. +234 803 000 0000" />
+      <input type="tel" id="f-phone" placeholder="e.g. +234 803 000 0000" autocomplete="off" />
       <div class="err" id="err-phone">Please enter the phone number.</div>
     </div>
 
     <button class="btn-generate" onclick="generateCard()">✦ &nbsp;Generate Access Card</button>
 
     <div id="card-actions" style="display:none;">
-      <button class="btn-print" onclick="printCard()">🖨️ &nbsp;Print This Card</button>
-      <button class="btn-new" onclick="newCard()">＋ &nbsp;New Card (Next Guest)</button>
+      <button class="btn-print" onclick="window.print()">🖨️ &nbsp;Print This Card</button>
+      <button class="btn-new"   onclick="newCard()">＋ &nbsp;New Card (Next Guest)</button>
     </div>
 
-    <!-- CELEBRANT PHOTO UPLOAD -->
     <div class="photo-section">
       <span class="photo-section-label">Celebrant Photo (Dad's Picture)</span>
-
       <div class="upload-zone" id="upload-zone" onclick="document.getElementById('photo-input').click()">
         <span class="uz-icon">📷</span>
         <p class="uz-title">Upload Dad's Photo</p>
-        <p class="uz-sub">Click to browse · JPG, PNG supported</p>
+        <p class="uz-sub">Tap to browse · JPG, PNG supported</p>
       </div>
-
       <div class="photo-loaded" id="photo-loaded">
         <img class="pl-thumb" id="photo-thumb" src="" alt="Celebrant" />
         <div class="pl-text">
@@ -595,28 +493,23 @@ body {
           <button class="pl-change" onclick="document.getElementById('photo-input').click()">Change photo</button>
         </div>
       </div>
-
       <input type="file" id="photo-input" accept="image/*" style="display:none;" onchange="loadPhoto(event)" />
     </div>
   </div>
 
-  <!-- CARD PREVIEW PANEL -->
   <div class="card-panel">
     <div class="panel-hint">— Card Preview —</div>
 
-    <!-- EMPTY STATE -->
     <div class="empty-state" id="empty-state">
       <div class="empty-icon">🎂</div>
       <div class="empty-text">
         Enter guest details from the Google Form<br>
-        and click <strong>Generate</strong> to create their access card.<br><br>
-        <span style="font-size:0.8rem;color:#bbb;">Each card gets a unique guest number.</span>
+        and tap <strong>Generate</strong> to preview the card.<br><br>
+        <span style="font-size:0.78rem;color:#bbb;">Each card gets a unique guest number.</span>
       </div>
     </div>
 
-    <!-- ══ THE ACCESS CARD ══ -->
     <div id="access-card">
-
       <div class="c-header">
         <div class="c-watermark">60</div>
         <div class="c-hotel-row">
@@ -639,7 +532,6 @@ body {
       </div>
 
       <div class="c-body">
-        <!-- CELEBRANT PHOTO -->
         <div class="c-photo-wrap">
           <div class="c-photo-box" id="c-photo-box">
             <div class="c-photo-placeholder">
@@ -649,41 +541,25 @@ body {
           </div>
           <div class="c-photo-caption">Celebrant</div>
         </div>
-
-        <!-- GUEST INFO -->
         <div class="c-info">
           <div class="c-guest-label">Guest Name</div>
           <div class="c-guest-name" id="c-name">—</div>
           <div class="c-rel" id="c-rel">—</div>
-          <div class="c-detail">
-            <div class="c-dot"></div>
-            <div class="c-detail-text" id="c-phone">—</div>
-          </div>
-          <div class="c-detail">
-            <div class="c-dot"></div>
-            <div class="c-detail-text">Friday, 17 April 2026</div>
-          </div>
-          <div class="c-detail">
-            <div class="c-dot"></div>
-            <div class="c-detail-text">12:00 PM Prompt</div>
-          </div>
+          <div class="c-detail"><div class="c-dot"></div><div class="c-detail-text" id="c-phone">—</div></div>
+          <div class="c-detail"><div class="c-dot"></div><div class="c-detail-text">Friday, 17 April 2026</div></div>
+          <div class="c-detail"><div class="c-dot"></div><div class="c-detail-text">12:00 PM Prompt</div></div>
         </div>
       </div>
 
       <div class="c-divider"></div>
 
       <div class="c-footer">
-        <div class="c-venue">
-          Royal Birds Hotel &amp; Towers<br>
-          Alagbaka Estate, Akure, Ondo State
-        </div>
+        <div class="c-venue">Royal Birds Hotel &amp; Towers<br>Alagbaka Estate, Akure, Ondo State</div>
         <div class="c-card-num" id="c-num">GBD-001</div>
       </div>
-
     </div>
-    <!-- end #access-card -->
-
   </div>
+
 </div>
 
 <script>
@@ -694,34 +570,35 @@ body {
     const name  = document.getElementById('f-name').value.trim();
     const rel   = document.getElementById('f-rel').value;
     const phone = document.getElementById('f-phone').value.trim();
-
     let valid = true;
-    const show = (id, show) => {
-      document.getElementById(id).style.display = show ? 'block' : 'none';
-    };
 
-    if (!name)  { show('err-name',  true); valid = false; } else show('err-name',  false);
-    if (!rel)   { show('err-rel',   true); valid = false; } else show('err-rel',   false);
-    if (!phone) { show('err-phone', true); valid = false; } else show('err-phone', false);
-
+    const showErr = (id, v) => document.getElementById(id).style.display = v ? 'block' : 'none';
+    if (!name)  { showErr('err-name',  true); valid = false; } else showErr('err-name',  false);
+    if (!rel)   { showErr('err-rel',   true); valid = false; } else showErr('err-rel',   false);
+    if (!phone) { showErr('err-phone', true); valid = false; } else showErr('err-phone', false);
     if (!valid) return;
 
     cardCount++;
-    document.getElementById('counter-badge').textContent = 'Cards Printed: ' + cardCount;
-
+    document.getElementById('counter-badge').innerHTML = 'Cards<br>Printed: ' + cardCount;
     document.getElementById('c-name').textContent  = name;
     document.getElementById('c-rel').textContent   = rel;
     document.getElementById('c-phone').textContent = phone;
     document.getElementById('c-num').textContent   = 'GBD-' + String(cardCount).padStart(3, '0');
 
-    const photoBox = document.getElementById('c-photo-box');
     if (celebrantPhoto) {
-      photoBox.innerHTML = '<img src="' + celebrantPhoto + '" alt="Celebrant" />';
+      document.getElementById('c-photo-box').innerHTML =
+        '<img src="' + celebrantPhoto + '" alt="Celebrant" />';
     }
 
     document.getElementById('empty-state').style.display  = 'none';
     document.getElementById('access-card').style.display  = 'block';
     document.getElementById('card-actions').style.display = 'block';
+
+    if (window.innerWidth <= 680) {
+      setTimeout(() => {
+        document.getElementById('access-card').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 120);
+    }
   }
 
   function loadPhoto(e) {
@@ -730,35 +607,29 @@ body {
     const reader = new FileReader();
     reader.onload = function(ev) {
       celebrantPhoto = ev.target.result;
-
-      // Update thumb and swap upload zone → loaded state
       document.getElementById('photo-thumb').src = celebrantPhoto;
       document.getElementById('upload-zone').style.display  = 'none';
       document.getElementById('photo-loaded').style.display = 'flex';
-
-      // Update card photo box if card is visible
-      const photoBox = document.getElementById('c-photo-box');
       if (document.getElementById('access-card').style.display === 'block') {
-        photoBox.innerHTML = '<img src="' + celebrantPhoto + '" alt="Celebrant" />';
+        document.getElementById('c-photo-box').innerHTML =
+          '<img src="' + celebrantPhoto + '" alt="Celebrant" />';
       }
     };
     reader.readAsDataURL(file);
-  }
-
-  function printCard() {
-    window.print();
   }
 
   function newCard() {
     document.getElementById('f-name').value  = '';
     document.getElementById('f-rel').value   = '';
     document.getElementById('f-phone').value = '';
-    ['err-name','err-rel','err-phone'].forEach(id => {
-      document.getElementById(id).style.display = 'none';
-    });
+    ['err-name','err-rel','err-phone'].forEach(id =>
+      document.getElementById(id).style.display = 'none');
     document.getElementById('empty-state').style.display  = 'block';
     document.getElementById('access-card').style.display  = 'none';
     document.getElementById('card-actions').style.display = 'none';
+    if (window.innerWidth <= 680) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
     document.getElementById('f-name').focus();
   }
 </script>
