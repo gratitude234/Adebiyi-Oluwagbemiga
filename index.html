@@ -503,7 +503,6 @@ body { font-family:'Montserrat',sans-serif; background:#1a2a1e; min-height:100vh
       cells += `<div class="cell empty"></div>`;
     }
     const html = `<!DOCTYPE html><html><head><meta charset="UTF-8">
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 @page{size:A4 portrait;margin:0;}
 *{box-sizing:border-box;margin:0;padding:0;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important;}
@@ -514,7 +513,14 @@ html,body{width:210mm;height:297mm;overflow:hidden;background:#ffffff;}
 ${CARD_CSS}
 </style></head><body>
 <div class="sheet">${cells}</div>
-<${'script'}>window.onload=function(){window.print();setTimeout(function(){window.close();},2000);};</${'script'}>
+<${'script'}>
+  function doPrint(){window.print();}
+  if(document.fonts && document.fonts.ready){
+    document.fonts.ready.then(function(){setTimeout(doPrint,400);});
+  } else {
+    window.onload=function(){setTimeout(doPrint,800);};
+  }
+</${'script'}>
 </body></html>`;
     const w = openPrintWindow(html);
     if (w) {
@@ -571,23 +577,29 @@ ${CARD_CSS}
 
   function singlePageHTML(c) {
     return `<!DOCTYPE html><html><head><meta charset="UTF-8">
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 @page{size:85.6mm 54mm;margin:0;}
 ${CARD_CSS}
 html,body{width:85.6mm;height:54mm;overflow:hidden;}
 </style></head><body>
 ${cardMarkup(c)}
-<${'script'}>window.onload=function(){window.print();setTimeout(function(){window.close();},1500);};</${'script'}>
+<${'script'}>
+  function doPrint(){window.print();}
+  if(document.fonts && document.fonts.ready){
+    document.fonts.ready.then(function(){setTimeout(doPrint,400);});
+  } else {
+    window.onload=function(){setTimeout(doPrint,800);};
+  }
+</${'script'}>
 </body></html>`;
   }
 
   const CARD_CSS = `
 *{box-sizing:border-box;margin:0;padding:0;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important;}
-body{font-family:'Montserrat',Helvetica,sans-serif;background:#ffffff;}
+body{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;background:#ffffff;}
 .card{width:85.6mm;height:54mm;background:#0b3320;position:relative;overflow:hidden;display:flex;flex-direction:column;border-radius:2mm;}
 .pat{position:absolute;inset:0;background-image:repeating-linear-gradient(45deg,rgba(201,161,42,.04) 0,rgba(201,161,42,.04) .5px,transparent .5px,transparent 4.5px),repeating-linear-gradient(-45deg,rgba(201,161,42,.04) 0,rgba(201,161,42,.04) .5px,transparent .5px,transparent 4.5px);}
-.sixty{position:absolute;right:-1mm;bottom:-3mm;font-family:Georgia,serif;font-size:40mm;font-weight:700;color:rgba(201,161,42,.06);line-height:1;user-select:none;pointer-events:none;}
+.sixty{position:absolute;right:-1mm;bottom:-3mm;font-family:Georgia,'Times New Roman',serif;font-size:40mm;font-weight:700;color:rgba(201,161,42,.06);line-height:1;user-select:none;pointer-events:none;}
 .ctla,.ctra,.cbla,.cbra{position:absolute;width:7mm;height:7mm;}
 .ctla{top:0;left:0;border-top:1px solid rgba(201,161,42,.5);border-left:1px solid rgba(201,161,42,.5);}
 .ctra{top:0;right:0;border-top:1px solid rgba(201,161,42,.5);border-right:1px solid rgba(201,161,42,.5);}
@@ -611,10 +623,10 @@ body{font-family:'Montserrat',Helvetica,sans-serif;background:#ffffff;}
 .ctag{font-size:4px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:#c9a12a;}
 .vline{width:1px;align-self:stretch;flex-shrink:0;margin-right:3.5mm;background:linear-gradient(to bottom,transparent,rgba(201,161,42,.5),rgba(201,161,42,.8),rgba(201,161,42,.5),transparent);}
 .info{flex:1;min-width:0;display:flex;flex-direction:column;justify-content:center;}
-.hon{font-size:4.5px;color:rgba(255,255,255,.4);font-family:Georgia,serif;font-style:italic;margin-bottom:.8px;}
+.hon{font-size:4.5px;color:rgba(255,255,255,.4);font-family:Georgia,'Times New Roman',serif;font-style:italic;margin-bottom:.8px;}
 .cname{font-size:4.5px;color:#e8c35a;font-weight:600;letter-spacing:.04em;text-transform:uppercase;margin-bottom:2mm;line-height:1.4;}
 .glbl{font-size:4px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:.5px;}
-.gname{font-size:8pt;font-weight:600;color:#fff;font-family:Georgia,serif;line-height:1.1;margin-bottom:1.5mm;word-break:break-word;}
+.gname{font-size:8pt;font-weight:700;color:#fff;font-family:Georgia,'Times New Roman',serif;line-height:1.1;margin-bottom:1.5mm;word-break:break-word;}
 .rel{display:inline-flex;align-items:center;gap:1.5px;border:1px solid rgba(201,161,42,.4);border-radius:10mm;padding:1px 3px;margin-bottom:1.5mm;}
 .rdot{width:2px;height:2px;border-radius:50%;background:#c9a12a;}
 .rtxt{font-size:4px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#e8c35a;}
@@ -624,7 +636,7 @@ body{font-family:'Montserrat',Helvetica,sans-serif;background:#ffffff;}
 .foot{border-top:1px solid rgba(201,161,42,.25);padding:1.5mm 3.5mm;display:flex;align-items:center;justify-content:space-between;background:rgba(0,0,0,.2);flex-shrink:0;}
 .fven{font-size:3.5px;color:rgba(255,255,255,.3);text-transform:uppercase;letter-spacing:.06em;}
 .fdate{font-size:4px;color:#c9a12a;font-weight:600;letter-spacing:.07em;}
-.fnum{font-family:'Courier New',monospace;font-size:4.5px;color:rgba(201,161,42,.5);letter-spacing:.15em;}
+.fnum{font-family:'Courier New',Courier,monospace;font-size:4.5px;color:rgba(201,161,42,.5);letter-spacing:.15em;}
 `;
 
   /* ── PHOTO LOAD ── */
