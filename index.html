@@ -4,433 +4,190 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Guest Access Card Generator — Adebiyi 60th Birthday</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
-
 :root {
-  --green:       #0d4028;
-  --green-mid:   #1a5c3a;
-  --green-light: #e8f4ed;
-  --gold:        #c9a12a;
-  --white:       #ffffff;
-  --ink:         #1a1a1a;
-  --muted:       #666;
-  --border:      #d0dbd2;
+  --green:#0b3320; --green2:#0f3d27; --green3:#164d30;
+  --gold:#c9a12a;  --gold2:#e8c35a;  --gold3:#f5e09a;
+  --white:#ffffff; --ink:#1a1a1a; --muted:#666; --border:#d0dbd2;
 }
-
-body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  background: #e8ede9;
-  min-height: 100vh;
-  color: var(--ink);
-}
+body { font-family:'Montserrat',sans-serif; background:#1a2a1e; min-height:100vh; color:var(--ink); }
 
 /* ── HEADER ── */
-.app-header {
-  background: var(--green);
-  padding: 12px 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  border-bottom: 4px solid var(--gold);
-  position: sticky;
-  top: 0;
-  z-index: 100;
-}
-.header-left { display: flex; align-items: center; gap: 10px; min-width: 0; flex: 1; }
-.header-seal {
-  width: 38px; height: 38px;
-  border-radius: 50%;
-  background: var(--gold);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 18px;
-  border: 2px solid rgba(255,255,255,0.3);
-  flex-shrink: 0;
-}
-.header-text { min-width: 0; flex: 1; }
-.app-title {
-  color: var(--gold);
-  font-family: Georgia, serif;
-  font-size: 0.92rem;
-  font-weight: bold;
-  line-height: 1.3;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.app-subtitle {
-  color: rgba(255,255,255,0.6);
-  font-size: 0.65rem;
-  margin-top: 1px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.counter-badge {
-  background: var(--gold);
-  color: var(--green);
-  font-size: 0.7rem;
-  font-weight: 700;
-  padding: 6px 11px;
-  border-radius: 20px;
-  white-space: nowrap;
-  flex-shrink: 0;
-  text-align: center;
-  line-height: 1.35;
-}
+.app-header { background:var(--green); padding:12px 1.25rem; display:flex; align-items:center; justify-content:space-between; gap:10px; border-bottom:3px solid var(--gold); position:sticky; top:0; z-index:100; }
+.header-left { display:flex; align-items:center; gap:10px; min-width:0; flex:1; }
+.header-seal { width:38px; height:38px; border-radius:50%; background:var(--gold); display:flex; align-items:center; justify-content:center; font-size:18px; border:2px solid rgba(255,255,255,0.2); flex-shrink:0; }
+.header-text { min-width:0; flex:1; }
+.app-title { color:var(--gold2); font-family:'Cormorant Garamond',serif; font-size:1.05rem; font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.app-subtitle { color:rgba(255,255,255,0.5); font-size:0.63rem; margin-top:1px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.counter-badge { background:var(--gold); color:var(--green); font-size:0.65rem; font-weight:700; padding:6px 11px; border-radius:20px; white-space:nowrap; flex-shrink:0; text-align:center; line-height:1.35; }
 
 /* ── LAYOUT ── */
-.app-body {
-  display: flex;
-  gap: 1.5rem;
-  padding: 1.5rem;
-  max-width: 1050px;
-  margin: 0 auto;
-  align-items: flex-start;
-}
+.app-body { display:flex; gap:1.5rem; padding:1.5rem; max-width:1100px; margin:0 auto; align-items:flex-start; }
 
 /* ── FORM PANEL ── */
-.form-panel {
-  background: var(--white);
-  border-radius: 14px;
-  padding: 1.25rem;
-  width: 340px;
-  flex-shrink: 0;
-  border: 1px solid var(--border);
-}
-.panel-title {
-  font-family: Georgia, serif;
-  font-size: 1rem;
-  color: var(--green);
-  padding-bottom: 0.75rem;
-  border-bottom: 2px solid var(--gold);
-  margin-bottom: 1.25rem;
-}
-.form-group { margin-bottom: 1rem; }
-.form-group label {
-  display: block;
-  font-size: 0.7rem;
-  font-weight: 700;
-  color: var(--muted);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  margin-bottom: 5px;
-}
+.form-panel { background:#fff; border-radius:14px; padding:1.25rem; width:300px; flex-shrink:0; border:1px solid var(--border); }
+.panel-title { font-family:'Cormorant Garamond',serif; font-size:1.1rem; font-weight:600; color:var(--green); padding-bottom:0.75rem; border-bottom:2px solid var(--gold); margin-bottom:1.25rem; }
+.form-group { margin-bottom:1rem; }
+.form-group label { display:block; font-size:0.65rem; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:5px; }
 .form-group input,
-.form-group select {
-  width: 100%;
-  padding: 11px 12px;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  font-size: 0.9rem;
-  color: var(--ink);
-  outline: none;
-  background: white;
-  -webkit-appearance: none;
-  appearance: none;
-  transition: border-color 0.2s;
-}
-.form-group select {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23666' d='M6 8L0 0h12z'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 12px center;
-  padding-right: 32px;
-}
+.form-group select { width:100%; padding:11px 12px; border:1px solid var(--border); border-radius:8px; font-size:0.88rem; color:var(--ink); outline:none; background:white; -webkit-appearance:none; appearance:none; font-family:'Montserrat',sans-serif; transition:border-color 0.2s; }
+.form-group select { background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23666' d='M6 8L0 0h12z'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 12px center; padding-right:32px; }
 .form-group input:focus,
-.form-group select:focus {
-  border-color: var(--green);
-  box-shadow: 0 0 0 3px rgba(13,64,40,0.08);
-}
-.err { font-size: 0.72rem; color: #c0392b; margin-top: 4px; display: none; }
+.form-group select:focus { border-color:var(--green); box-shadow:0 0 0 3px rgba(11,51,32,0.08); }
+.err { font-size:0.7rem; color:#c0392b; margin-top:4px; display:none; }
 
 /* ── BUTTONS ── */
-.btn-generate {
-  width: 100%;
-  padding: 13px;
-  background: var(--green);
-  color: var(--gold);
-  border: none;
-  border-radius: 9px;
-  font-size: 0.92rem;
-  font-weight: 700;
-  cursor: pointer;
-  letter-spacing: 0.05em;
-  font-family: Georgia, serif;
-  transition: background 0.2s;
-  margin-top: 4px;
-  -webkit-tap-highlight-color: transparent;
-}
-.btn-generate:hover { background: var(--green-mid); }
+.btn-generate { width:100%; padding:13px; background:var(--green); color:var(--gold2); border:none; border-radius:9px; font-size:0.88rem; font-weight:700; cursor:pointer; letter-spacing:0.08em; font-family:'Montserrat',sans-serif; transition:background 0.2s; margin-top:4px; text-transform:uppercase; }
+.btn-generate:hover { background:var(--green3); }
 
-.btn-print {
-  width: 100%;
-  padding: 13px;
-  background: var(--gold);
-  color: var(--green);
-  border: none;
-  border-radius: 9px;
-  font-size: 0.9rem;
-  font-weight: 700;
-  cursor: pointer;
-  margin-top: 10px;
-  font-family: Georgia, serif;
-  -webkit-tap-highlight-color: transparent;
-  transition: opacity 0.2s;
-}
-.btn-print:hover { opacity: 0.88; }
+/* Current card actions — only visible when a card is previewed */
+.current-actions { display:none; margin-top:0; }
+.btn-print { width:100%; padding:13px; background:var(--gold); color:var(--green); border:none; border-radius:9px; font-size:0.85rem; font-weight:700; cursor:pointer; margin-top:10px; font-family:'Montserrat',sans-serif; text-transform:uppercase; letter-spacing:0.06em; transition:background 0.2s; }
+.btn-print:hover { background:var(--gold2); }
+.btn-new { width:100%; padding:12px; background:transparent; color:var(--green); border:1.5px solid var(--green); border-radius:9px; font-size:0.82rem; cursor:pointer; margin-top:8px; font-family:'Montserrat',sans-serif; transition:background 0.2s; }
+.btn-new:hover { background:#e8f4ed; }
 
-.btn-new {
-  width: 100%;
-  padding: 12px;
-  background: transparent;
-  color: var(--green);
-  border: 1.5px solid var(--green);
-  border-radius: 9px;
-  font-size: 0.85rem;
-  cursor: pointer;
-  margin-top: 8px;
-  -webkit-tap-highlight-color: transparent;
-  transition: background 0.2s;
+/* Queue section — always visible once first card is generated */
+.queue-section { display:none; margin-top:1.25rem; padding-top:1.25rem; border-top:1px solid #eaefea; }
+.queue-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:8px; }
+.queue-title { font-size:0.68rem; font-weight:700; color:var(--green); text-transform:uppercase; letter-spacing:0.08em; }
+.queue-clear { font-size:0.65rem; color:#c0392b; text-decoration:underline; cursor:pointer; background:none; border:none; font-family:inherit; padding:0; }
+.queue-dots { display:flex; gap:4px; flex-wrap:wrap; margin-bottom:10px; }
+.qdot {
+  width:26px; height:26px; border-radius:5px;
+  background:#d9ede0; border:1.5px solid #acd1bb;
+  display:flex; align-items:center; justify-content:center;
+  font-size:0.6rem; font-weight:700; color:#5a8a6a;
+  transition:all 0.25s;
 }
-.btn-new:hover { background: var(--green-light); }
+.qdot.filled { background:var(--green); border-color:var(--green); color:var(--gold2); }
+.qdot.just-added { transform:scale(1.25); }
+
+.btn-batch {
+  width:100%; padding:13px; background:#0b3320; color:var(--gold2);
+  border:1.5px solid var(--gold); border-radius:9px; font-size:0.82rem;
+  font-weight:700; cursor:pointer; font-family:'Montserrat',sans-serif;
+  text-transform:uppercase; letter-spacing:0.06em; transition:all 0.2s;
+  display:flex; align-items:center; justify-content:center; gap:8px;
+}
+.btn-batch:hover:not(:disabled) { background:var(--green3); }
+.btn-batch:disabled { opacity:0.35; cursor:not-allowed; }
+.batch-badge { background:var(--gold); color:var(--green); font-size:0.65rem; font-weight:700; border-radius:20px; padding:2px 7px; line-height:1.4; }
+
+/* ── TOAST NOTIFICATION ── */
+.toast {
+  position:fixed; bottom:24px; left:50%; transform:translateX(-50%) translateY(80px);
+  background:var(--green); color:var(--gold2);
+  font-family:'Montserrat',sans-serif; font-size:0.8rem; font-weight:600;
+  padding:10px 20px; border-radius:30px;
+  border:1px solid rgba(201,161,42,0.4);
+  box-shadow:0 8px 32px rgba(0,0,0,0.4);
+  z-index:999; white-space:nowrap;
+  transition:transform 0.35s cubic-bezier(0.34,1.56,0.64,1), opacity 0.35s;
+  opacity:0; pointer-events:none;
+}
+.toast.show { transform:translateX(-50%) translateY(0); opacity:1; }
 
 /* ── PHOTO UPLOAD ── */
-.photo-section {
-  margin-top: 1.25rem;
-  padding-top: 1.25rem;
-  border-top: 1px solid #eaefea;
-}
-.photo-section-label {
-  font-size: 0.7rem;
-  font-weight: 700;
-  color: var(--muted);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  display: block;
-  margin-bottom: 10px;
-}
-.upload-zone {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  width: 100%;
-  padding: 20px 12px;
-  background: var(--green-light);
-  border: 1.5px dashed var(--green);
-  border-radius: 10px;
-  cursor: pointer;
-  -webkit-tap-highlight-color: transparent;
-  transition: background 0.2s;
-}
-.upload-zone:hover  { background: #d5ecdc; }
-.upload-zone .uz-icon  { font-size: 1.8rem; line-height: 1; }
-.upload-zone .uz-title { font-size: 0.85rem; font-weight: 700; color: var(--green); margin: 0; }
-.upload-zone .uz-sub   { font-size: 0.7rem; color: var(--muted); margin: 0; }
-
-.photo-loaded {
-  display: none;
-  align-items: center;
-  gap: 12px;
-  width: 100%;
-  padding: 10px 12px;
-  background: var(--green-light);
-  border: 1.5px solid var(--green);
-  border-radius: 10px;
-}
-.photo-loaded .pl-thumb {
-  width: 56px; height: 56px;
-  border-radius: 8px;
-  object-fit: cover;
-  border: 2px solid var(--green);
-  flex-shrink: 0;
-  display: block;
-}
-.photo-loaded .pl-text { flex: 1; min-width: 0; }
-.photo-loaded .pl-ok { font-size: 0.8rem; font-weight: 700; color: var(--green); margin-bottom: 3px; }
-.photo-loaded .pl-ok::before { content: '✔  '; }
-.photo-loaded .pl-change {
-  font-size: 0.72rem; color: var(--muted); cursor: pointer;
-  text-decoration: underline; background: none; border: none;
-  padding: 0; font-family: inherit;
-}
-.photo-loaded .pl-change:hover { color: var(--green); }
+.photo-section { margin-top:1.25rem; padding-top:1.25rem; border-top:1px solid #eaefea; }
+.photo-section-label { font-size:0.65rem; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:0.1em; display:block; margin-bottom:10px; }
+.upload-zone { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:6px; width:100%; padding:18px 12px; background:#f0f7f2; border:1.5px dashed var(--green); border-radius:10px; cursor:pointer; transition:background 0.2s; -webkit-tap-highlight-color:transparent; }
+.upload-zone:hover { background:#dff0e5; }
+.upload-zone .uz-icon  { font-size:1.6rem; line-height:1; }
+.upload-zone .uz-title { font-size:0.8rem; font-weight:700; color:var(--green); margin:0; }
+.upload-zone .uz-sub   { font-size:0.68rem; color:var(--muted); margin:0; }
+.photo-loaded { display:none; align-items:center; gap:12px; width:100%; padding:10px 12px; background:#f0f7f2; border:1.5px solid var(--green); border-radius:10px; }
+.photo-loaded .pl-thumb { width:52px; height:52px; border-radius:7px; object-fit:cover; border:2px solid var(--green); flex-shrink:0; }
+.photo-loaded .pl-text  { flex:1; min-width:0; }
+.photo-loaded .pl-ok    { font-size:0.78rem; font-weight:700; color:var(--green); margin-bottom:3px; }
+.photo-loaded .pl-ok::before { content:'✔  '; }
+.photo-loaded .pl-change { font-size:0.7rem; color:var(--muted); cursor:pointer; text-decoration:underline; background:none; border:none; padding:0; font-family:inherit; }
 
 /* ── CARD PANEL ── */
-.card-panel {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.75rem;
-  min-width: 0;
-}
-.panel-hint { font-size: 0.7rem; color: #999; letter-spacing: 0.1em; text-transform: uppercase; }
+.card-panel { flex:1; display:flex; flex-direction:column; align-items:center; gap:0.75rem; min-width:0; }
+.panel-hint { font-size:0.65rem; color:rgba(255,255,255,0.3); letter-spacing:0.12em; text-transform:uppercase; }
+.size-note  { font-size:0.62rem; color:rgba(255,255,255,0.2); letter-spacing:0.05em; }
 
-/* ── EMPTY STATE ── */
-.empty-state { text-align: center; padding: 3.5rem 2rem; color: #aaa; }
-.empty-icon  { font-size: 3rem; margin-bottom: 0.75rem; }
-.empty-text  { font-size: 0.85rem; line-height: 1.7; }
+.empty-state { text-align:center; padding:3.5rem 2rem; }
+.empty-icon  { font-size:3rem; margin-bottom:0.75rem; opacity:0.35; }
+.empty-text  { font-size:0.82rem; line-height:1.8; color:rgba(255,255,255,0.3); }
 
 /* ══════════════════════════════
-   THE ACCESS CARD
+   CR80 CARD  540 × 340px screen
 ══════════════════════════════ */
+.card-scaler { position:relative; width:540px; height:340px; flex-shrink:0; }
+
 #access-card {
-  width: 100%;
-  max-width: 350px;
-  border-radius: 16px;
-  overflow: hidden;
-  border: 1.5px solid var(--gold);
-  background: var(--white);
-  font-family: Georgia, serif;
-  display: none;
+  width:540px; height:340px; border-radius:14px; overflow:hidden;
+  display:none; position:absolute; top:0; left:0;
+  box-shadow:0 0 0 1px rgba(201,161,42,0.4),0 30px 80px rgba(0,0,0,0.6),0 0 40px rgba(201,161,42,0.08);
+  transform-origin:top left;
 }
+.cb-bg { position:absolute; inset:0; background:var(--green); overflow:hidden; }
+.cb-pattern { position:absolute; inset:0; background-image:repeating-linear-gradient(45deg,rgba(201,161,42,0.035) 0px,rgba(201,161,42,0.035) 1px,transparent 1px,transparent 18px),repeating-linear-gradient(-45deg,rgba(201,161,42,0.035) 0px,rgba(201,161,42,0.035) 1px,transparent 1px,transparent 18px); }
+.cb-sixty { position:absolute; right:-12px; bottom:-30px; font-family:'Cormorant Garamond',serif; font-size:260px; font-weight:700; color:rgba(201,161,42,0.06); line-height:1; user-select:none; pointer-events:none; letter-spacing:-10px; }
+.cb-corner-tl { position:absolute; top:0; left:0; width:60px; height:60px; border-top:2px solid rgba(201,161,42,0.5); border-left:2px solid rgba(201,161,42,0.5); border-radius:14px 0 0 0; }
+.cb-corner-tr { position:absolute; top:0; right:0; width:60px; height:60px; border-top:2px solid rgba(201,161,42,0.5); border-right:2px solid rgba(201,161,42,0.5); border-radius:0 14px 0 0; }
+.cb-corner-bl { position:absolute; bottom:0; left:0; width:60px; height:60px; border-bottom:2px solid rgba(201,161,42,0.5); border-left:2px solid rgba(201,161,42,0.5); border-radius:0 0 0 14px; }
+.cb-corner-br { position:absolute; bottom:0; right:0; width:60px; height:60px; border-bottom:2px solid rgba(201,161,42,0.5); border-right:2px solid rgba(201,161,42,0.5); border-radius:0 0 14px 0; }
+.cb-content { position:absolute; inset:0; display:flex; flex-direction:column; }
+.cb-top { display:flex; align-items:center; justify-content:space-between; padding:16px 22px 0 22px; }
+.cb-hotel-row { display:flex; align-items:center; gap:9px; }
+.cb-seal { width:30px; height:30px; border-radius:50%; background:var(--gold); display:flex; align-items:center; justify-content:center; font-size:14px; border:1.5px solid rgba(255,255,255,0.25); flex-shrink:0; }
+.cb-hotel-name { font-size:7.5px; letter-spacing:0.14em; text-transform:uppercase; color:var(--gold2); font-family:'Montserrat',sans-serif; font-weight:600; line-height:1.6; }
+.cb-hotel-sub { font-size:6.5px; color:rgba(255,255,255,0.4); font-family:'Montserrat',sans-serif; letter-spacing:0.06em; margin-top:-1px; }
+.cb-badge { display:flex; align-items:center; gap:5px; background:rgba(201,161,42,0.15); border:1px solid rgba(201,161,42,0.35); border-radius:20px; padding:4px 10px; }
+.cb-badge-dot { width:4px; height:4px; border-radius:50%; background:var(--gold); }
+.cb-badge-text { font-size:6.5px; letter-spacing:0.18em; text-transform:uppercase; color:var(--gold2); font-family:'Montserrat',sans-serif; font-weight:600; }
+.cb-rule { height:1px; margin:12px 22px 0; background:linear-gradient(to right,transparent,rgba(201,161,42,0.5),rgba(201,161,42,0.9),rgba(201,161,42,0.5),transparent); }
+.cb-body { flex:1; display:flex; align-items:center; gap:0; padding:12px 22px 8px 22px; min-height:0; }
+.cb-photo-wrap { flex-shrink:0; display:flex; flex-direction:column; align-items:center; gap:6px; margin-right:20px; }
+.cb-photo-ring { width:90px; height:90px; border-radius:50%; background:conic-gradient(var(--gold) 0deg,var(--gold2) 90deg,var(--gold) 180deg,var(--gold3) 270deg,var(--gold) 360deg); padding:2.5px; flex-shrink:0; }
+.cb-photo-inner { width:100%; height:100%; border-radius:50%; overflow:hidden; background:var(--green3); display:flex; align-items:center; justify-content:center; }
+.cb-photo-inner img { width:100%; height:100%; object-fit:cover; display:block; }
+.cb-photo-placeholder { text-align:center; }
+.cb-photo-placeholder .ph-ico { font-size:32px; display:block; opacity:0.5; }
+.cb-photo-placeholder .ph-txt { font-size:7px; color:rgba(255,255,255,0.4); font-family:'Montserrat',sans-serif; text-transform:uppercase; letter-spacing:0.08em; margin-top:3px; line-height:1.4; }
+.cb-celeb-tag { font-size:6.5px; font-weight:700; text-transform:uppercase; letter-spacing:0.14em; color:var(--gold); font-family:'Montserrat',sans-serif; }
+.cb-vline { width:1px; align-self:stretch; background:linear-gradient(to bottom,transparent,rgba(201,161,42,0.5),rgba(201,161,42,0.8),rgba(201,161,42,0.5),transparent); margin-right:20px; flex-shrink:0; }
+.cb-info { flex:1; min-width:0; display:flex; flex-direction:column; justify-content:center; }
+.cb-honour-line { font-size:7px; color:rgba(255,255,255,0.45); font-family:'Cormorant Garamond',serif; font-style:italic; margin-bottom:2px; line-height:1.5; }
+.cb-celeb-full { font-size:7.5px; color:var(--gold2); font-family:'Montserrat',sans-serif; font-weight:600; letter-spacing:0.05em; text-transform:uppercase; margin-bottom:10px; line-height:1.4; }
+.cb-guest-lbl { font-size:6.5px; letter-spacing:0.15em; text-transform:uppercase; color:rgba(255,255,255,0.35); font-family:'Montserrat',sans-serif; margin-bottom:2px; }
+.cb-guest-name { font-size:22px; font-weight:600; color:var(--white); font-family:'Cormorant Garamond',serif; line-height:1.1; margin-bottom:6px; word-break:break-word; }
+.cb-rel { display:inline-flex; align-items:center; gap:5px; border:1px solid rgba(201,161,42,0.45); border-radius:20px; padding:3px 10px; margin-bottom:10px; }
+.cb-rel-dot { width:4px; height:4px; border-radius:50%; background:var(--gold); flex-shrink:0; }
+.cb-rel-text { font-size:7px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:var(--gold2); font-family:'Montserrat',sans-serif; }
+.cb-detail { display:flex; align-items:center; gap:6px; margin-bottom:3.5px; }
+.cb-detail-icon { font-size:8px; width:12px; text-align:center; flex-shrink:0; opacity:0.6; }
+.cb-detail-text { font-size:9px; color:rgba(255,255,255,0.75); font-family:'Montserrat',sans-serif; line-height:1.3; }
+.cb-footer { border-top:1px solid rgba(201,161,42,0.3); padding:8px 22px; display:flex; align-items:center; justify-content:space-between; background:rgba(0,0,0,0.2); }
+.cb-venue { font-size:7px; color:rgba(255,255,255,0.35); font-family:'Montserrat',sans-serif; letter-spacing:0.07em; text-transform:uppercase; }
+.cb-date-chip { font-size:7px; color:var(--gold); font-family:'Montserrat',sans-serif; font-weight:600; letter-spacing:0.08em; }
+.cb-num { font-family:'Courier New',monospace; font-size:9px; color:rgba(201,161,42,0.55); letter-spacing:0.2em; }
 
-.c-header {
-  background: var(--green);
-  padding: 16px 18px 18px;
-  position: relative;
-  overflow: hidden;
-}
-.c-watermark {
-  position: absolute; right: -8px; top: 50%;
-  transform: translateY(-50%);
-  font-size: 88px; font-weight: bold;
-  color: rgba(201,161,42,0.15);
-  font-family: Georgia, serif; line-height: 1;
-  user-select: none; pointer-events: none;
-}
-.c-hotel-row { display: flex; align-items: center; gap: 10px; margin-bottom: 11px; }
-.c-seal {
-  width: 40px; height: 40px; border-radius: 50%;
-  background: var(--gold);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 19px; border: 2px solid rgba(255,255,255,0.35); flex-shrink: 0;
-}
-.c-hotel-name { font-size: 8px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); font-family: -apple-system, sans-serif; margin-bottom: 2px; }
-.c-hotel-full { font-size: 11px; color: white; font-family: -apple-system, sans-serif; font-weight: 700; }
-.c-honour     { color: rgba(255,255,255,0.75); font-size: 10.5px; font-style: italic; font-family: Georgia, serif; }
-.c-celeb-name { color: var(--gold); font-size: 9.5px; font-family: -apple-system, sans-serif; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; margin-top: 2px; }
-
-.c-gold-stripe { height: 5px; background: var(--gold); }
-
-.c-badge {
-  padding: 5px 18px;
-  display: flex; align-items: center; justify-content: center; gap: 8px;
-  border-bottom: 1px solid #e4ede6; background: white;
-}
-.c-badge-dot  { width: 4px; height: 4px; border-radius: 50%; background: var(--gold); }
-.c-badge-text { font-size: 8px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--green); font-family: -apple-system, sans-serif; font-weight: 700; }
-
-.c-body { padding: 16px 18px; display: flex; gap: 14px; }
-.c-photo-wrap { flex-shrink: 0; }
-.c-photo-box {
-  width: 78px; height: 95px; border-radius: 9px;
-  border: 2.5px solid var(--green); overflow: hidden;
-  background: var(--green-light);
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-}
-.c-photo-box img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.c-photo-placeholder { text-align: center; padding: 6px; }
-.c-photo-placeholder .ico { font-size: 28px; display: block; }
-.c-photo-placeholder p { font-size: 7px; color: var(--green); font-family: -apple-system, sans-serif; text-transform: uppercase; letter-spacing: 0.06em; margin-top: 4px; line-height: 1.4; }
-.c-photo-caption { font-size: 7.5px; color: var(--green); font-family: -apple-system, sans-serif; font-weight: 700; text-align: center; text-transform: uppercase; letter-spacing: 0.07em; margin-top: 5px; }
-
-.c-info { flex: 1; min-width: 0; }
-.c-guest-label { font-size: 7.5px; letter-spacing: 0.13em; text-transform: uppercase; color: #aaa; font-family: -apple-system, sans-serif; margin-bottom: 2px; }
-.c-guest-name { font-size: 17px; font-weight: bold; color: var(--green); line-height: 1.2; margin-bottom: 8px; font-family: Georgia, serif; word-break: break-word; }
-.c-rel { display: inline-block; background: var(--green); color: var(--gold); font-size: 7.5px; font-family: -apple-system, sans-serif; font-weight: 700; letter-spacing: 0.13em; text-transform: uppercase; padding: 3px 10px; border-radius: 20px; margin-bottom: 10px; }
-.c-detail { display: flex; align-items: flex-start; gap: 6px; margin-bottom: 4px; }
-.c-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--gold); flex-shrink: 0; margin-top: 4px; }
-.c-detail-text { font-size: 10px; color: #333; font-family: -apple-system, sans-serif; }
-
-.c-divider { height: 1px; background: #e3ece5; }
-
-.c-footer {
-  background: var(--green);
-  padding: 11px 18px;
-  display: flex; justify-content: space-between; align-items: center;
-}
-.c-venue { font-size: 8px; color: var(--gold); font-family: -apple-system, sans-serif; text-transform: uppercase; letter-spacing: 0.07em; line-height: 1.6; }
-.c-card-num { font-family: 'Courier New', monospace; font-size: 11px; color: rgba(255,255,255,0.6); letter-spacing: 0.15em; }
-
-/* ══════════════════════════════
-   MOBILE RESPONSIVE ≤ 680px
-══════════════════════════════ */
-@media (max-width: 680px) {
-
-  .app-header   { padding: 10px 14px; }
-  .app-subtitle { display: none; }
-  .app-title    { font-size: 0.82rem; }
-  .counter-badge { font-size: 0.65rem; padding: 5px 9px; }
-
-  .app-body {
-    flex-direction: column;
-    padding: 0.85rem;
-    gap: 0.85rem;
-  }
-
-  .form-panel {
-    width: 100%;
-    border-radius: 12px;
-    padding: 1rem;
-  }
-
-  .card-panel {
-    width: 100%;
-    align-items: stretch;
-  }
-
-  #access-card {
-    max-width: 100%;
-    border-radius: 12px;
-  }
-
-  /* Bigger touch targets */
+/* ── MOBILE ── */
+@media (max-width:680px) {
+  .app-header { padding:10px 14px; }
+  .app-subtitle { display:none; }
+  .app-title { font-size:0.88rem; }
+  .app-body { flex-direction:column; padding:0.85rem; gap:0.85rem; }
+  .form-panel { width:100%; border-radius:12px; padding:1rem; }
+  .card-panel { width:100%; align-items:flex-start; }
   .form-group input,
-  .form-group select { padding: 13px 12px; font-size: 1rem; }
-  .btn-generate, .btn-print { padding: 15px; font-size: 1rem; }
-  .btn-new { padding: 13px; font-size: 0.9rem; }
-
-  .empty-state { padding: 2rem 1rem; }
-}
-
-/* ── PRINT ── */
-@media print {
-  @page { size: 3.5in 5.8in; margin: 0.12in; }
-
-  * {
-    -webkit-print-color-adjust: exact !important;
-            print-color-adjust: exact !important;
-    color-adjust: exact !important;
-  }
-
-  body, .app-body { background: white !important; }
-  .app-header, .form-panel, .panel-hint, .empty-state { display: none !important; }
-  .app-body   { padding: 0 !important; gap: 0 !important; }
-  .card-panel { align-items: flex-start !important; }
-
-  #access-card {
-    display: block !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    border-radius: 10px !important;
-    border: 1px solid #c9a12a !important;
-  }
-
-  .c-header      { background: #0d4028 !important; }
-  .c-gold-stripe { background: #c9a12a !important; }
-  .c-badge-dot   { background: #c9a12a !important; }
-  .c-dot         { background: #c9a12a !important; }
-  .c-rel         { background: #0d4028 !important; color: #c9a12a !important; }
-  .c-footer      { background: #0d4028 !important; }
-  .c-seal        { background: #c9a12a !important; }
+  .form-group select { padding:13px 12px; font-size:0.95rem; }
+  .btn-generate, .btn-print { padding:15px; }
+  .btn-new, .btn-batch { padding:13px; }
+  .empty-state { padding:2rem 1rem; }
 }
 </style>
 </head>
 <body>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
 
 <div class="app-header">
   <div class="header-left">
@@ -440,11 +197,12 @@ body {
       <div class="app-subtitle">SURV. (TPL.) Adebiyi Oluwagbemiga Olanibi — 60th Birthday · 17 April 2026</div>
     </div>
   </div>
-  <div class="counter-badge" id="counter-badge">Cards<br>Printed: 0</div>
+  <div class="counter-badge" id="counter-badge">Cards<br>Generated: 0</div>
 </div>
 
 <div class="app-body">
 
+  <!-- FORM PANEL -->
   <div class="form-panel">
     <div class="panel-title">Enter Guest Details</div>
 
@@ -474,11 +232,26 @@ body {
 
     <button class="btn-generate" onclick="generateCard()">✦ &nbsp;Generate Access Card</button>
 
-    <div id="card-actions" style="display:none;">
-      <button class="btn-print" onclick="window.print()">🖨️ &nbsp;Print This Card</button>
-      <button class="btn-new"   onclick="newCard()">＋ &nbsp;New Card (Next Guest)</button>
+    <!-- Only visible when a card is currently previewed -->
+    <div class="current-actions" id="current-actions">
+      <button class="btn-print" onclick="printSingle()">🖨️ &nbsp;Print This Card</button>
+      <button class="btn-new" onclick="newCard()">＋ &nbsp;New Card (Next Guest)</button>
     </div>
 
+    <!-- Queue section — visible after first card is generated -->
+    <div class="queue-section" id="queue-section">
+      <div class="queue-header">
+        <span class="queue-title">Sheet Queue</span>
+        <button class="queue-clear" onclick="confirmClearQueue()">✓ Done printing — clear queue</button>
+      </div>
+      <div class="queue-dots" id="queue-dots"></div>
+      <button class="btn-batch" id="btn-batch" onclick="printBatch()" disabled>
+        <span>📋 Print Sheet</span>
+        <span class="batch-badge" id="batch-count">0 / 8</span>
+      </button>
+    </div>
+
+    <!-- Photo upload -->
     <div class="photo-section">
       <span class="photo-section-label">Celebrant Photo (Dad's Picture)</span>
       <div class="upload-zone" id="upload-zone" onclick="document.getElementById('photo-input').click()">
@@ -497,139 +270,402 @@ body {
     </div>
   </div>
 
+  <!-- CARD PREVIEW PANEL -->
   <div class="card-panel">
     <div class="panel-hint">— Card Preview —</div>
+    <div class="size-note">CR80 Official ID · 85.6 × 54 mm</div>
 
     <div class="empty-state" id="empty-state">
       <div class="empty-icon">🎂</div>
       <div class="empty-text">
-        Enter guest details from the Google Form<br>
-        and tap <strong>Generate</strong> to preview the card.<br><br>
-        <span style="font-size:0.78rem;color:#bbb;">Each card gets a unique guest number.</span>
+        Enter guest details and click <strong style="color:rgba(255,255,255,0.55)">Generate</strong><br>
+        to preview the access card.<br><br>
+        <span style="font-size:0.72rem;color:rgba(255,255,255,0.2);">Queue up to 8 cards then print all on one A4 sheet.</span>
       </div>
     </div>
 
-    <div id="access-card">
-      <div class="c-header">
-        <div class="c-watermark">60</div>
-        <div class="c-hotel-row">
-          <div class="c-seal">🦅</div>
-          <div>
-            <div class="c-hotel-name">Royal Birds Hotel &amp; Towers · Akure</div>
-            <div class="c-hotel-full">60th Birthday Celebration</div>
-          </div>
+    <div class="card-scaler" id="card-scaler">
+      <div id="access-card">
+        <div class="cb-bg">
+          <div class="cb-pattern"></div>
+          <div class="cb-sixty">60</div>
+          <div class="cb-corner-tl"></div><div class="cb-corner-tr"></div>
+          <div class="cb-corner-bl"></div><div class="cb-corner-br"></div>
         </div>
-        <div class="c-honour">In honour of</div>
-        <div class="c-celeb-name">SURV. (TPL.) Adebiyi Oluwagbemiga Olanibi, MNIS</div>
-      </div>
-
-      <div class="c-gold-stripe"></div>
-
-      <div class="c-badge">
-        <div class="c-badge-dot"></div>
-        <div class="c-badge-text">Official Guest Access Card</div>
-        <div class="c-badge-dot"></div>
-      </div>
-
-      <div class="c-body">
-        <div class="c-photo-wrap">
-          <div class="c-photo-box" id="c-photo-box">
-            <div class="c-photo-placeholder">
-              <span class="ico">👤</span>
-              <p>Celebrant<br>Photo</p>
+        <div class="cb-content">
+          <div class="cb-top">
+            <div class="cb-hotel-row">
+              <div class="cb-seal">🦅</div>
+              <div>
+                <div class="cb-hotel-name">Royal Birds Hotel &amp; Towers</div>
+                <div class="cb-hotel-sub">Alagbaka Estate · Akure, Ondo State</div>
+              </div>
+            </div>
+            <div class="cb-badge">
+              <div class="cb-badge-dot"></div>
+              <div class="cb-badge-text">Guest Access</div>
             </div>
           </div>
-          <div class="c-photo-caption">Celebrant</div>
+          <div class="cb-rule"></div>
+          <div class="cb-body">
+            <div class="cb-photo-wrap">
+              <div class="cb-photo-ring">
+                <div class="cb-photo-inner" id="c-photo-box">
+                  <div class="cb-photo-placeholder">
+                    <span class="ph-ico">👤</span>
+                    <p class="ph-txt">Celebrant<br>Photo</p>
+                  </div>
+                </div>
+              </div>
+              <div class="cb-celeb-tag">Celebrant</div>
+            </div>
+            <div class="cb-vline"></div>
+            <div class="cb-info">
+              <div class="cb-honour-line">In honour of</div>
+              <div class="cb-celeb-full">SURV. (TPL.) Adebiyi Oluwagbemiga Olanibi, MNIS</div>
+              <div class="cb-guest-lbl">Invited Guest</div>
+              <div class="cb-guest-name" id="c-name">—</div>
+              <div class="cb-rel">
+                <div class="cb-rel-dot"></div>
+                <div class="cb-rel-text" id="c-rel">—</div>
+              </div>
+              <div class="cb-detail"><div class="cb-detail-icon">📱</div><div class="cb-detail-text" id="c-phone">—</div></div>
+              <div class="cb-detail"><div class="cb-detail-icon">📅</div><div class="cb-detail-text">Friday, 17 April 2026 &nbsp;·&nbsp; 12:00 PM</div></div>
+            </div>
+          </div>
+          <div class="cb-footer">
+            <div class="cb-venue">Royal Birds Hotel &amp; Towers · Akure</div>
+            <div class="cb-date-chip">17 · 04 · 2026</div>
+            <div class="cb-num" id="c-num">GBD-001</div>
+          </div>
         </div>
-        <div class="c-info">
-          <div class="c-guest-label">Guest Name</div>
-          <div class="c-guest-name" id="c-name">—</div>
-          <div class="c-rel" id="c-rel">—</div>
-          <div class="c-detail"><div class="c-dot"></div><div class="c-detail-text" id="c-phone">—</div></div>
-          <div class="c-detail"><div class="c-dot"></div><div class="c-detail-text">Friday, 17 April 2026</div></div>
-          <div class="c-detail"><div class="c-dot"></div><div class="c-detail-text">12:00 PM Prompt</div></div>
-        </div>
-      </div>
-
-      <div class="c-divider"></div>
-
-      <div class="c-footer">
-        <div class="c-venue">Royal Birds Hotel &amp; Towers<br>Alagbaka Estate, Akure, Ondo State</div>
-        <div class="c-card-num" id="c-num">GBD-001</div>
       </div>
     </div>
   </div>
-
 </div>
 
 <script>
-  let cardCount = 0;
+  let cardCount      = 0;   // total generated
   let celebrantPhoto = null;
+  let cardQueue      = [];  // max 8
+  let currentCard    = null; // card currently previewed
+  let toastTimer     = null;
 
+  /* ── TOAST ── */
+  function showToast(msg, duration) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => t.classList.remove('show'), duration || 2800);
+  }
+
+  /* ── MOBILE SCALE ── */
+  function scaleCard() {
+    const card   = document.getElementById('access-card');
+    const scaler = document.getElementById('card-scaler');
+    if (!card) return;
+    const CARD_W = 540, CARD_H = 340;
+    if (window.innerWidth <= 680) {
+      const avail = window.innerWidth - 28;
+      const scale = Math.min(avail / CARD_W, 1);
+      card.style.transform       = `scale(${scale})`;
+      card.style.transformOrigin = 'top left';
+      scaler.style.width         = (CARD_W * scale) + 'px';
+      scaler.style.height        = (CARD_H * scale) + 'px';
+      scaler.style.overflow      = 'hidden';
+    } else {
+      card.style.transform  = '';
+      scaler.style.width    = '540px';
+      scaler.style.height   = '340px';
+      scaler.style.overflow = '';
+    }
+  }
+  window.addEventListener('resize', scaleCard);
+  scaleCard();
+
+  /* ── GENERATE ── */
   function generateCard() {
     const name  = document.getElementById('f-name').value.trim();
     const rel   = document.getElementById('f-rel').value;
     const phone = document.getElementById('f-phone').value.trim();
     let valid = true;
-
     const showErr = (id, v) => document.getElementById(id).style.display = v ? 'block' : 'none';
     if (!name)  { showErr('err-name',  true); valid = false; } else showErr('err-name',  false);
     if (!rel)   { showErr('err-rel',   true); valid = false; } else showErr('err-rel',   false);
     if (!phone) { showErr('err-phone', true); valid = false; } else showErr('err-phone', false);
     if (!valid) return;
 
+    // Prevent duplicate in queue (same name + phone)
+    const isDupe = cardQueue.some(c => c.name.toLowerCase() === name.toLowerCase() && c.phone === phone);
+    if (isDupe) {
+      showToast('⚠ This guest is already in the queue.', 3000);
+      return;
+    }
+
+    if (cardQueue.length >= 8) {
+      showToast('Queue is full (8/8). Print the sheet first, then continue.', 3500);
+      return;
+    }
+
     cardCount++;
-    document.getElementById('counter-badge').innerHTML = 'Cards<br>Printed: ' + cardCount;
+    const cardNum = 'GBD-' + String(cardCount).padStart(3, '0');
+
+    // Store as current card
+    currentCard = { name, rel, phone, num: cardNum, photo: celebrantPhoto };
+
+    // Update preview
+    document.getElementById('counter-badge').innerHTML = 'Cards<br>Generated: ' + cardCount;
     document.getElementById('c-name').textContent  = name;
     document.getElementById('c-rel').textContent   = rel;
     document.getElementById('c-phone').textContent = phone;
-    document.getElementById('c-num').textContent   = 'GBD-' + String(cardCount).padStart(3, '0');
-
+    document.getElementById('c-num').textContent   = cardNum;
     if (celebrantPhoto) {
       document.getElementById('c-photo-box').innerHTML =
         '<img src="' + celebrantPhoto + '" alt="Celebrant" />';
     }
 
-    document.getElementById('empty-state').style.display  = 'none';
-    document.getElementById('access-card').style.display  = 'block';
-    document.getElementById('card-actions').style.display = 'block';
+    // Add to queue
+    cardQueue.push(currentCard);
+    updateQueue(true); // true = animate last dot
+
+    // Show card & actions
+    document.getElementById('empty-state').style.display       = 'none';
+    document.getElementById('access-card').style.display       = 'block';
+    document.getElementById('current-actions').style.display   = 'block';
+    document.getElementById('queue-section').style.display     = 'block';
+    scaleCard();
+
+    const qn = cardQueue.length;
+    if (qn === 8) {
+      showToast('🎉 Queue full! Ready to print all 8 cards.', 3500);
+    } else {
+      showToast('✔ Card added to queue · ' + qn + '/8', 2000);
+    }
 
     if (window.innerWidth <= 680) {
-      setTimeout(() => {
-        document.getElementById('access-card').scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }, 120);
+      setTimeout(() => document.getElementById('card-scaler')
+        .scrollIntoView({ behavior:'smooth', block:'start' }), 150);
     }
   }
 
+  /* ── QUEUE UI ── */
+  function updateQueue(animateLast) {
+    const n = cardQueue.length;
+    document.getElementById('batch-count').textContent = n + ' / 8';
+    document.getElementById('btn-batch').disabled = (n === 0);
+
+    const dots = document.getElementById('queue-dots');
+    dots.innerHTML = '';
+    for (let i = 0; i < 8; i++) {
+      const d = document.createElement('div');
+      const isFilled = i < n;
+      d.className = 'qdot' + (isFilled ? ' filled' : '');
+      d.textContent = isFilled ? (i + 1) : '';
+      if (animateLast && i === n - 1) {
+        d.classList.add('just-added');
+        setTimeout(() => d.classList.remove('just-added'), 300);
+      }
+      dots.appendChild(d);
+    }
+  }
+
+  function confirmClearQueue() {
+    if (cardQueue.length === 0) return;
+    if (!confirm('Confirm all ' + cardQueue.length + ' card(s) printed successfully?\n\nThis will clear the queue so you can start a new batch.')) return;
+    clearQueue();
+    currentCard = null;
+    document.getElementById('current-actions').style.display = 'none';
+    document.getElementById('access-card').style.display     = 'none';
+    document.getElementById('empty-state').style.display     = 'block';
+    showToast('✔ Queue cleared. Ready for next batch.', 2500);
+  }
+
+  function clearQueue() {
+    cardQueue = [];
+    document.getElementById('batch-count').textContent = '0 / 8';
+    document.getElementById('btn-batch').disabled = true;
+    document.getElementById('queue-section').style.display = 'none';
+    document.getElementById('queue-dots').innerHTML = '';
+  }
+
+  /* ── PRINT SINGLE (prints current preview exactly) ── */
+  function printSingle() {
+    if (!currentCard) return;
+    openPrintWindow(singlePageHTML(currentCard));
+  }
+
+  /* ── PRINT BATCH — 8 on A4 ── */
+  function printBatch() {
+    if (cardQueue.length === 0) return;
+    let cells = '';
+    cardQueue.forEach(c => { cells += `<div class="cell">${cardMarkup(c)}</div>`; });
+    for (let i = cardQueue.length; i < 8; i++) {
+      cells += `<div class="cell empty"></div>`;
+    }
+    const html = `<!DOCTYPE html><html><head><meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+@page{size:A4 portrait;margin:0;}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important;}
+html,body{width:210mm;height:297mm;overflow:hidden;background:#ffffff;}
+.sheet{width:210mm;height:297mm;display:grid;grid-template-columns:85.6mm 85.6mm;grid-template-rows:54mm 54mm 54mm 54mm;column-gap:12.93mm;row-gap:16.2mm;padding:16.2mm 12.93mm;}
+.cell{width:85.6mm;height:54mm;}
+.cell.empty{background:rgba(0,0,0,.03);border:1px dashed rgba(0,0,0,.12);border-radius:2mm;}
+${CARD_CSS}
+</style></head><body>
+<div class="sheet">${cells}</div>
+<${'script'}>window.onload=function(){window.print();setTimeout(function(){window.close();},2000);};</${'script'}>
+</body></html>`;
+    const w = openPrintWindow(html);
+    if (w) {
+      showToast('🖨️ Sheet opened — clear queue only after confirming it printed.', 4000);
+    }
+  }
+
+  function openPrintWindow(html) {
+    const w = window.open('', '_blank', 'width=800,height=700');
+    if (!w) {
+      showToast('⚠ Allow popups in your browser to print.', 4000);
+      return null;
+    }
+    w.document.write(html);
+    w.document.close();
+    return w;
+  }
+
+  /* ── CARD HTML (for print popup) ── */
+  function cardMarkup(c) {
+    const photo = c.photo
+      ? `<img src="${c.photo}" style="width:100%;height:100%;object-fit:cover;display:block;">`
+      : `<div style="text-align:center;padding:4px;"><span style="font-size:16px;display:block;opacity:.4;">👤</span><p style="font-size:5px;color:rgba(255,255,255,.4);font-family:sans-serif;text-transform:uppercase;letter-spacing:.08em;margin-top:2px;line-height:1.4;">Celebrant<br>Photo</p></div>`;
+    return `<div class="card">
+  <div class="pat"></div><div class="sixty">60</div>
+  <div class="ctla"></div><div class="ctra"></div><div class="cbla"></div><div class="cbra"></div>
+  <div class="cnt">
+    <div class="top">
+      <div class="hrow"><div class="seal">🦅</div><div><div class="hname">Royal Birds Hotel &amp; Towers</div><div class="hsub">Alagbaka Estate · Akure, Ondo State</div></div></div>
+      <div class="badge"><div class="bdot"></div><div class="btxt">Guest Access</div></div>
+    </div>
+    <div class="rule"></div>
+    <div class="body">
+      <div class="pwrap"><div class="pring"><div class="pinner">${photo}</div></div><div class="ctag">Celebrant</div></div>
+      <div class="vline"></div>
+      <div class="info">
+        <div class="hon">In honour of</div>
+        <div class="cname">SURV. (TPL.) Adebiyi Oluwagbemiga Olanibi, MNIS</div>
+        <div class="glbl">Invited Guest</div>
+        <div class="gname">${c.name}</div>
+        <div class="rel"><div class="rdot"></div><div class="rtxt">${c.rel}</div></div>
+        <div class="row"><div class="rico">📱</div><div class="rtx">${c.phone}</div></div>
+        <div class="row"><div class="rico">📅</div><div class="rtx">Friday, 17 April 2026 · 12:00 PM</div></div>
+      </div>
+    </div>
+    <div class="foot">
+      <div class="fven">Royal Birds Hotel &amp; Towers · Akure</div>
+      <div class="fdate">17 · 04 · 2026</div>
+      <div class="fnum">${c.num}</div>
+    </div>
+  </div>
+</div>`;
+  }
+
+  function singlePageHTML(c) {
+    return `<!DOCTYPE html><html><head><meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+@page{size:85.6mm 54mm;margin:0;}
+${CARD_CSS}
+html,body{width:85.6mm;height:54mm;overflow:hidden;}
+</style></head><body>
+${cardMarkup(c)}
+<${'script'}>window.onload=function(){window.print();setTimeout(function(){window.close();},1500);};</${'script'}>
+</body></html>`;
+  }
+
+  const CARD_CSS = `
+*{box-sizing:border-box;margin:0;padding:0;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important;}
+body{font-family:'Montserrat',Helvetica,sans-serif;background:#ffffff;}
+.card{width:85.6mm;height:54mm;background:#0b3320;position:relative;overflow:hidden;display:flex;flex-direction:column;border-radius:2mm;}
+.pat{position:absolute;inset:0;background-image:repeating-linear-gradient(45deg,rgba(201,161,42,.04) 0,rgba(201,161,42,.04) .5px,transparent .5px,transparent 4.5px),repeating-linear-gradient(-45deg,rgba(201,161,42,.04) 0,rgba(201,161,42,.04) .5px,transparent .5px,transparent 4.5px);}
+.sixty{position:absolute;right:-1mm;bottom:-3mm;font-family:Georgia,serif;font-size:40mm;font-weight:700;color:rgba(201,161,42,.06);line-height:1;user-select:none;pointer-events:none;}
+.ctla,.ctra,.cbla,.cbra{position:absolute;width:7mm;height:7mm;}
+.ctla{top:0;left:0;border-top:1px solid rgba(201,161,42,.5);border-left:1px solid rgba(201,161,42,.5);}
+.ctra{top:0;right:0;border-top:1px solid rgba(201,161,42,.5);border-right:1px solid rgba(201,161,42,.5);}
+.cbla{bottom:0;left:0;border-bottom:1px solid rgba(201,161,42,.5);border-left:1px solid rgba(201,161,42,.5);}
+.cbra{bottom:0;right:0;border-bottom:1px solid rgba(201,161,42,.5);border-right:1px solid rgba(201,161,42,.5);}
+.cnt{position:absolute;inset:0;display:flex;flex-direction:column;}
+.top{display:flex;align-items:center;justify-content:space-between;padding:2.8mm 3.5mm 0;}
+.hrow{display:flex;align-items:center;gap:2mm;}
+.seal{width:6.5mm;height:6.5mm;border-radius:50%;background:#c9a12a;display:flex;align-items:center;justify-content:center;font-size:9px;border:1px solid rgba(255,255,255,.2);flex-shrink:0;}
+.hname{font-size:4.5px;letter-spacing:.1em;text-transform:uppercase;color:#e8c35a;font-weight:600;line-height:1.5;}
+.hsub{font-size:3.5px;color:rgba(255,255,255,.35);letter-spacing:.04em;}
+.badge{display:flex;align-items:center;gap:1.5px;background:rgba(201,161,42,.15);border:1px solid rgba(201,161,42,.35);border-radius:10mm;padding:1mm 3mm;}
+.bdot{width:2px;height:2px;border-radius:50%;background:#c9a12a;}
+.btxt{font-size:4px;letter-spacing:.14em;text-transform:uppercase;color:#e8c35a;font-weight:600;}
+.rule{height:1px;margin:1.8mm 3.5mm 0;background:linear-gradient(to right,transparent,rgba(201,161,42,.5),rgba(201,161,42,.9),rgba(201,161,42,.5),transparent);}
+.body{flex:1;display:flex;align-items:center;padding:2mm 3.5mm 1.5mm;min-height:0;}
+.pwrap{flex-shrink:0;display:flex;flex-direction:column;align-items:center;gap:1.2mm;margin-right:3.5mm;}
+.pring{width:17mm;height:17mm;border-radius:50%;background:conic-gradient(#c9a12a 0deg,#e8c35a 90deg,#c9a12a 180deg,#f5e09a 270deg,#c9a12a 360deg);padding:.5mm;}
+.pinner{width:100%;height:100%;border-radius:50%;overflow:hidden;background:#164d30;display:flex;align-items:center;justify-content:center;}
+.pinner img{width:100%;height:100%;object-fit:cover;display:block;}
+.ctag{font-size:4px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:#c9a12a;}
+.vline{width:1px;align-self:stretch;flex-shrink:0;margin-right:3.5mm;background:linear-gradient(to bottom,transparent,rgba(201,161,42,.5),rgba(201,161,42,.8),rgba(201,161,42,.5),transparent);}
+.info{flex:1;min-width:0;display:flex;flex-direction:column;justify-content:center;}
+.hon{font-size:4.5px;color:rgba(255,255,255,.4);font-family:Georgia,serif;font-style:italic;margin-bottom:.8px;}
+.cname{font-size:4.5px;color:#e8c35a;font-weight:600;letter-spacing:.04em;text-transform:uppercase;margin-bottom:2mm;line-height:1.4;}
+.glbl{font-size:4px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:.5px;}
+.gname{font-size:8pt;font-weight:600;color:#fff;font-family:Georgia,serif;line-height:1.1;margin-bottom:1.5mm;word-break:break-word;}
+.rel{display:inline-flex;align-items:center;gap:1.5px;border:1px solid rgba(201,161,42,.4);border-radius:10mm;padding:1px 3px;margin-bottom:1.5mm;}
+.rdot{width:2px;height:2px;border-radius:50%;background:#c9a12a;}
+.rtxt{font-size:4px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#e8c35a;}
+.row{display:flex;align-items:center;gap:1.5px;margin-bottom:1px;}
+.rico{font-size:5px;width:4mm;text-align:center;opacity:.5;}
+.rtx{font-size:4.5px;color:rgba(255,255,255,.7);line-height:1.3;}
+.foot{border-top:1px solid rgba(201,161,42,.25);padding:1.5mm 3.5mm;display:flex;align-items:center;justify-content:space-between;background:rgba(0,0,0,.2);flex-shrink:0;}
+.fven{font-size:3.5px;color:rgba(255,255,255,.3);text-transform:uppercase;letter-spacing:.06em;}
+.fdate{font-size:4px;color:#c9a12a;font-weight:600;letter-spacing:.07em;}
+.fnum{font-family:'Courier New',monospace;font-size:4.5px;color:rgba(201,161,42,.5);letter-spacing:.15em;}
+`;
+
+  /* ── PHOTO LOAD ── */
   function loadPhoto(e) {
-    const file = e.target.files[0];
-    if (!file) return;
+    const file = e.target.files[0]; if (!file) return;
     const reader = new FileReader();
     reader.onload = function(ev) {
       celebrantPhoto = ev.target.result;
       document.getElementById('photo-thumb').src = celebrantPhoto;
       document.getElementById('upload-zone').style.display  = 'none';
       document.getElementById('photo-loaded').style.display = 'flex';
-      if (document.getElementById('access-card').style.display === 'block') {
+
+      // Update card preview if visible
+      if (document.getElementById('access-card').style.display === 'block')
         document.getElementById('c-photo-box').innerHTML =
-          '<img src="' + celebrantPhoto + '" alt="Celebrant" />';
-      }
+          '<img src="'+celebrantPhoto+'" alt="Celebrant" />';
+
+      // Backfill photo into currentCard and ALL queued cards
+      // so print always uses the latest photo regardless of when it was uploaded
+      if (currentCard) currentCard.photo = celebrantPhoto;
+      cardQueue.forEach(c => { c.photo = celebrantPhoto; });
+
+      showToast('📷 Photo loaded — applied to all queued cards.', 2500);
     };
     reader.readAsDataURL(file);
   }
 
+  /* ── NEW CARD ── */
   function newCard() {
     document.getElementById('f-name').value  = '';
     document.getElementById('f-rel').value   = '';
     document.getElementById('f-phone').value = '';
     ['err-name','err-rel','err-phone'].forEach(id =>
       document.getElementById(id).style.display = 'none');
-    document.getElementById('empty-state').style.display  = 'block';
-    document.getElementById('access-card').style.display  = 'none';
-    document.getElementById('card-actions').style.display = 'none';
-    if (window.innerWidth <= 680) {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
+    document.getElementById('empty-state').style.display     = 'block';
+    document.getElementById('access-card').style.display     = 'none';
+    document.getElementById('current-actions').style.display = 'none';
+    currentCard = null;
+    // Queue section stays visible — user can still see queue progress
+    if (window.innerWidth <= 680) window.scrollTo({ top:0, behavior:'smooth' });
     document.getElementById('f-name').focus();
   }
 </script>
