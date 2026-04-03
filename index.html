@@ -153,44 +153,13 @@ body{font-family:'DM Sans',sans-serif;background:var(--stone-fog);min-height:100
 .ck-fdate{font-size:8.5px;color:var(--gold-bright);font-family:'DM Sans',sans-serif;font-weight:600;letter-spacing:0.18em;}
 .ck-fnum{font-family:'Courier New',monospace;font-size:8.5px;color:rgba(238,226,213,0.28);letter-spacing:0.22em;}
 
-/* ── MOBILE TAB SYSTEM ── */
-.mob-tabs{display:none;}
 @media(max-width:680px){
   .app-header{padding:0 14px;}.app-subtitle{display:none;}.app-title{font-size:0.9rem;}
-  .app-body{flex-direction:column;padding:0;gap:0;}
-  .form-panel{width:100%;border-radius:0;border-left:0;border-right:0;border-top:0;box-shadow:none;padding:1rem;}
-  .card-panel{width:100%;align-items:center;padding:0.75rem 0.9rem 1.2rem;}
-  .panel-hint,.size-note{display:none;}
+  .app-body{flex-direction:column;padding:0.9rem;gap:0.9rem;}
+  .form-panel{width:100%;}.card-panel{width:100%;align-items:flex-start;}
   .form-group input,.form-group select{padding:12px;font-size:0.95rem;}
   .btn-generate,.btn-new,.btn-batch{padding:13px;}
   .empty-state{padding:2rem 1rem;}
-
-  /* Tab bar */
-  .mob-tabs{
-    display:flex;width:100%;
-    background:white;border-bottom:1.5px solid var(--stone);
-    position:sticky;top:58px;z-index:90;
-  }
-  .mob-tab{
-    flex:1;padding:11px 0;text-align:center;
-    font-size:0.75rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;
-    color:var(--ink-soft);border-bottom:2.5px solid transparent;
-    cursor:pointer;transition:all .18s;background:none;border-top:none;border-left:none;border-right:none;
-    font-family:'DM Sans',sans-serif;
-  }
-  .mob-tab.active{color:var(--wine);border-bottom-color:var(--wine);}
-  .mob-tab .tab-badge{
-    display:inline-block;background:var(--gold);color:var(--wine-deep);
-    font-size:0.5rem;font-weight:700;border-radius:10px;padding:1px 5px;
-    margin-left:5px;line-height:1.5;vertical-align:middle;
-  }
-
-  /* Tab panels */
-  .mob-panel{display:none;}
-  .mob-panel.active{display:block;}
-
-  /* Card scaler on mobile — fills width */
-  .card-scaler{margin:0 auto;}
 }
 .fdivider{height:1px;background:#EDE4DC;margin:1rem 0;}
 .fslabel{font-size:0.58rem;font-weight:600;color:var(--ink-soft);text-transform:uppercase;letter-spacing:0.13em;margin-bottom:0.85rem;display:flex;align-items:center;gap:8px;}
@@ -211,12 +180,8 @@ body{font-family:'DM Sans',sans-serif;background:var(--stone-fog);min-height:100
   <div class="counter-badge" id="counter-badge">Cards<br>Generated: 0</div>
 </div>
 
-<div class="mob-tabs" id="mob-tabs">
-  <button class="mob-tab active" id="tab-form" onclick="switchTab('form')">Guest Details</button>
-  <button class="mob-tab" id="tab-preview" onclick="switchTab('preview')">Preview <span class="tab-badge" id="tab-badge" style="display:none">0</span></button>
-</div>
 <div class="app-body">
-  <div class="mob-panel active" id="mob-form"><div class="form-panel">
+  <div class="form-panel">
     <div class="panel-title">Guest Card Generator</div>
     <div class="fslabel"><span class="stepn">1</span> Celebrant Photo</div>
     <div class="upload-zone" id="upload-zone" onclick="document.getElementById('photo-input').click()">
@@ -274,8 +239,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--stone-fog);min-height:100
     </div>
   </div>
 
-  </div></div><!-- /mob-form -->
-  <div class="mob-panel" id="mob-preview"><div class="card-panel">
+  <div class="card-panel">
     <div class="panel-hint">— Card Preview —</div>
     <div class="size-note">CR80 · 85.6 × 54 mm</div>
     <div class="empty-state" id="empty-state">
@@ -342,7 +306,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--stone-fog);min-height:100
       </div>
     </div>
   </div>
-  </div></div><!-- /mob-preview -->
 </div>
 
 <script>
@@ -355,20 +318,10 @@ function scaleCard(){
   const c=document.getElementById('access-card'),s=document.getElementById('card-scaler');
   if(!c||s.classList.contains('hidden'))return;
   if(window.innerWidth<=680){
-    const avail=window.innerWidth-32;
-    const r=Math.min(avail/540,1);
+    const r=Math.min((window.innerWidth-28)/540,1);
     c.style.transform='scale('+r+')';c.style.transformOrigin='top left';
     s.style.width=(540*r)+'px';s.style.height=(340*r)+'px';s.style.overflow='hidden';
   }else{c.style.transform='';s.style.width='540px';s.style.height='340px';s.style.overflow='';}
-}
-
-function switchTab(tab){
-  const isMob=window.innerWidth<=680;if(!isMob)return;
-  document.getElementById('mob-form').classList.toggle('active',tab==='form');
-  document.getElementById('mob-preview').classList.toggle('active',tab==='preview');
-  document.getElementById('tab-form').classList.toggle('active',tab==='form');
-  document.getElementById('tab-preview').classList.toggle('active',tab==='preview');
-  if(tab==='preview')setTimeout(scaleCard,50);
 }
 window.addEventListener('resize',scaleCard);scaleCard();
 
@@ -402,11 +355,7 @@ function generateCard(){
   scaleCard();
   const n=queue.length;
   toast(n===8?'🎉 Queue full — ready to print!':'✔ Card queued · '+n+'/8',n===8?3500:2000);
-  // Update preview badge
-  const badge=document.getElementById('tab-badge');
-  if(badge){badge.textContent=n;badge.style.display='inline';}
-  // Auto-switch to preview tab on mobile
-  if(window.innerWidth<=680)setTimeout(()=>switchTab('preview'),120);
+  if(window.innerWidth<=680)setTimeout(()=>document.getElementById('card-scaler').scrollIntoView({behavior:'smooth',block:'start'}),150);
 }
 
 function renderDots(anim){
@@ -559,8 +508,8 @@ function newCard(){
   document.getElementById('card-scaler').classList.add('hidden');
   document.getElementById('current-actions').style.display='none';
   current=null;
-  if(window.innerWidth<=680){switchTab('form');setTimeout(()=>document.getElementById('f-name').focus(),200);}
-  else document.getElementById('f-name').focus();
+  if(window.innerWidth<=680)window.scrollTo({top:0,behavior:'smooth'});
+  document.getElementById('f-name').focus();
 }
 </script>
 </body>
